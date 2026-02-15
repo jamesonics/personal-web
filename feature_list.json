@@ -1,29 +1,37 @@
 {
   "project_info": {
-    "name": "Personal Web",
-    "description": "个人网站项目",
+    "name": "Personal Website",
+    "description": "个人主页网站 - 展示简历、项目经历、获奖等",
+    "template_reference": "https://wangshusen.github.io/",
+    "deployment_target": "GitHub Pages",
     "created_at": "2025-02-15",
-    "version": "0.1.0"
+    "version": "1.0.0"
+  },
+  "tech_stack": {
+    "frontend": "HTML5 + CSS3 + JavaScript (原生，无框架依赖)",
+    "style_framework": "Bootstrap 5 (CDN引入)",
+    "fonts": "Google Fonts",
+    "deployment": "GitHub Pages"
   },
   "categories": [
-    "core",
-    "ui",
-    "functionality",
-    "performance",
-    "accessibility",
-    "seo"
+    "setup",
+    "layout",
+    "content",
+    "styling",
+    "responsive",
+    "deployment"
   ],
   "features": [
     {
       "id": "F001",
-      "category": "core",
-      "description": "项目基础结构初始化",
+      "category": "setup",
+      "description": "创建项目基础文件结构",
       "steps": [
-        "创建项目目录结构",
-        "配置package.json",
-        "设置基础HTML模板",
-        "配置CSS样式框架",
-        "验证项目可以正常启动"
+        "创建 index.html 主页面",
+        "创建 css/style.css 样式文件",
+        "创建 js/main.js 脚本文件",
+        "创建 images/ 图片目录",
+        "验证文件结构完整"
       ],
       "priority": "critical",
       "passes": false,
@@ -31,44 +39,44 @@
     },
     {
       "id": "F002",
-      "category": "ui",
-      "description": "响应式导航栏组件",
+      "category": "layout",
+      "description": "创建页面头部区域（姓名+简介）",
       "steps": [
-        "创建导航栏HTML结构",
-        "实现响应式设计",
-        "添加移动端汉堡菜单",
-        "测试不同屏幕尺寸下的显示效果",
-        "验证导航链接可点击"
+        "添加姓名标题",
+        "添加个人简介段落",
+        "添加头像或照片位置",
+        "添加社交链接（GitHub、邮箱等）",
+        "验证头部区域显示正常"
       ],
       "priority": "high",
       "passes": false,
-      "notes": ""
+      "notes": "参考模板的 About Me 部分"
     },
     {
       "id": "F003",
-      "category": "ui",
-      "description": "首页Hero区域",
+      "category": "layout",
+      "description": "创建教育经历时间线",
       "steps": [
-        "设计Hero区域布局",
-        "添加标题和副标题",
-        "添加行动号召按钮",
-        "实现背景效果",
-        "验证文字可读性"
+        "设计时间线布局结构",
+        "添加学位/学校名称",
+        "添加时间范围",
+        "添加院系/专业信息",
+        "验证时间线显示效果"
       ],
       "priority": "high",
       "passes": false,
-      "notes": ""
+      "notes": "按时间倒序排列"
     },
     {
       "id": "F004",
-      "category": "functionality",
-      "description": "项目展示区域",
+      "category": "layout",
+      "description": "创建工作/实习经历时间线",
       "steps": [
-        "创建项目卡片组件",
-        "实现项目列表布局",
-        "添加项目详情链接",
-        "实现悬停效果",
-        "验证链接跳转正确"
+        "添加公司/机构名称",
+        "添加职位名称",
+        "添加工作时间范围",
+        "添加工作内容描述",
+        "验证经历展示效果"
       ],
       "priority": "high",
       "passes": false,
@@ -76,29 +84,29 @@
     },
     {
       "id": "F005",
-      "category": "functionality",
-      "description": "技能展示区域",
+      "category": "layout",
+      "description": "创建项目经历展示区域",
       "steps": [
-        "设计技能展示布局",
-        "创建技能进度条组件",
-        "添加技能图标",
-        "实现动画效果",
-        "验证技能分类清晰"
+        "设计项目卡片布局",
+        "添加项目名称和描述",
+        "添加技术栈标签",
+        "添加项目链接（GitHub/Demo）",
+        "验证项目展示效果"
       ],
-      "priority": "medium",
+      "priority": "high",
       "passes": false,
       "notes": ""
     },
     {
       "id": "F006",
-      "category": "ui",
-      "description": "联系方式区域",
+      "category": "layout",
+      "description": "创建获奖荣誉展示区域",
       "steps": [
-        "创建联系表单",
-        "添加社交媒体链接",
-        "实现表单验证",
-        "添加成功/错误提示",
-        "验证表单可提交"
+        "设计获奖列表布局",
+        "添加奖项名称",
+        "添加获奖时间",
+        "添加颁发机构",
+        "验证获奖展示效果"
       ],
       "priority": "medium",
       "passes": false,
@@ -106,113 +114,142 @@
     },
     {
       "id": "F007",
-      "category": "ui",
-      "description": "页脚组件",
+      "category": "layout",
+      "description": "创建专业技能展示区域",
       "steps": [
-        "设计页脚布局",
+        "添加技能分类",
+        "添加具体技能项",
+        "可选：添加熟练度指示",
+        "验证技能展示效果"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F008",
+      "category": "layout",
+      "description": "创建页面底部区域",
+      "steps": [
         "添加版权信息",
-        "添加快速链接",
-        "实现响应式设计",
-        "验证所有链接有效"
+        "添加最后更新时间",
+        "添加联系方式",
+        "添加访问统计（可选）",
+        "验证页脚显示效果"
       ],
       "priority": "low",
       "passes": false,
       "notes": ""
     },
     {
-      "id": "F008",
-      "category": "functionality",
-      "description": "深色/浅色主题切换",
-      "steps": [
-        "定义CSS变量主题",
-        "创建主题切换按钮",
-        "实现主题持久化(localStorage)",
-        "测试两种主题下的显示效果",
-        "验证主题切换平滑过渡"
-      ],
-      "priority": "medium",
-      "passes": false,
-      "notes": ""
-    },
-    {
       "id": "F009",
-      "category": "performance",
-      "description": "图片懒加载",
+      "category": "styling",
+      "description": "设计整体视觉风格",
       "steps": [
-        "实现懒加载逻辑",
-        "添加加载占位符",
-        "处理加载错误",
-        "测试滚动加载效果",
-        "验证性能提升"
+        "选择配色方案（简洁专业风格）",
+        "选择字体组合",
+        "设置统一的间距规范",
+        "添加适当的阴影和圆角",
+        "验证视觉效果协调"
       ],
-      "priority": "medium",
+      "priority": "high",
       "passes": false,
-      "notes": ""
+      "notes": "参考模板的简洁学术风格"
     },
     {
       "id": "F010",
-      "category": "accessibility",
-      "description": "键盘导航支持",
+      "category": "responsive",
+      "description": "实现响应式设计",
       "steps": [
-        "添加focus样式",
-        "实现Tab键导航",
-        "添加跳转链接",
-        "使用屏幕阅读器测试",
-        "验证WCAG 2.1 AA合规"
+        "设置移动端断点",
+        "调整移动端布局",
+        "优化移动端字体大小",
+        "测试不同屏幕尺寸",
+        "验证响应式效果"
       ],
-      "priority": "medium",
+      "priority": "high",
       "passes": false,
       "notes": ""
     },
     {
       "id": "F011",
-      "category": "seo",
-      "description": "SEO元数据优化",
+      "category": "deployment",
+      "description": "配置GitHub Pages部署",
       "steps": [
-        "添加meta描述标签",
-        "配置Open Graph标签",
-        "添加结构化数据",
-        "创建sitemap.xml",
-        "验证Google搜索控制台"
+        "创建GitHub仓库",
+        "推送代码到GitHub",
+        "启用GitHub Pages",
+        "配置自定义域名（可选）",
+        "验证网站可访问"
       ],
-      "priority": "medium",
+      "priority": "critical",
       "passes": false,
       "notes": ""
     },
     {
       "id": "F012",
-      "category": "performance",
-      "description": "性能优化",
+      "category": "deployment",
+      "description": "优化国内访问速度",
       "steps": [
-        "压缩CSS/JS文件",
-        "优化图片格式",
-        "配置浏览器缓存",
-        "使用Lighthouse测试",
-        "验证性能得分>90"
+        "使用国内CDN加载Bootstrap",
+        "使用国内CDN加载Google Fonts",
+        "优化图片大小",
+        "启用浏览器缓存",
+        "测试国内访问效果"
       ],
       "priority": "high",
+      "passes": false,
+      "notes": "使用bootcdn或cdnjs替代"
+    },
+    {
+      "id": "F013",
+      "category": "content",
+      "description": "填充个人真实内容",
+      "steps": [
+        "填写个人信息",
+        "填写教育经历",
+        "填写项目经历",
+        "填写获奖情况",
+        "验证内容准确完整"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": "需要用户提供信息"
+    },
+    {
+      "id": "F014",
+      "category": "setup",
+      "description": "添加SEO和社交媒体优化",
+      "steps": [
+        "添加meta描述标签",
+        "添加Open Graph标签",
+        "添加favicon图标",
+        "添加结构化数据",
+        "验证SEO效果"
+      ],
+      "priority": "low",
       "passes": false,
       "notes": ""
     }
   ],
   "statistics": {
-    "total_features": 12,
+    "total_features": 14,
     "completed": 0,
     "in_progress": 0,
-    "pending": 12,
+    "pending": 14,
     "by_category": {
-      "core": 1,
-      "ui": 4,
-      "functionality": 3,
-      "performance": 2,
-      "accessibility": 1,
-      "seo": 1
+      "setup": 2,
+      "layout": 6,
+      "content": 1,
+      "styling": 1,
+      "responsive": 1,
+      "deployment": 2
     },
     "by_priority": {
-      "critical": 1,
-      "high": 4,
-      "medium": 6,
-      "low": 1
+      "critical": 2,
+      "high": 6,
+      "medium": 3,
+      "low": 3
     }
   }
 }
