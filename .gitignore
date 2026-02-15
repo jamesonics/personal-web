@@ -62,3 +62,6 @@ Thumbs.db
 # Claude Agent specific
 .agent-cache/
 .session-data/
+
+# Reference folder
+reference/
