@@ -1,0 +1,128 @@
+{
+  "agent_settings": {
+    "project_name": "Personal Web",
+    "version": "1.0.0",
+    "created_at": "2025-02-15",
+    "framework_version": "1.0.0"
+  },
+  "agent_behavior": {
+    "max_features_per_session": 1,
+    "require_e2e_testing": true,
+    "auto_commit": true,
+    "update_progress_file": true,
+    "strict_mode": true
+  },
+  "session_startup": {
+    "steps": [
+      {
+        "order": 1,
+        "action": "bash",
+        "command": "pwd",
+        "description": "确认当前工作目录"
+      },
+      {
+        "order": 2,
+        "action": "read",
+        "file": "claude-progress.txt",
+        "description": "阅读历史进度"
+      },
+      {
+        "order": 3,
+        "action": "read",
+        "file": "feature_list.json",
+        "description": "查看功能清单"
+      },
+      {
+        "order": 4,
+        "action": "bash",
+        "command": "git log --oneline -10",
+        "description": "查看最近的Git提交"
+      },
+      {
+        "order": 5,
+        "action": "bash",
+        "command": "git status",
+        "description": "检查Git工作区状态"
+      },
+      {
+        "order": 6,
+        "action": "bash",
+        "command": "bash init.sh",
+        "description": "运行初始化脚本"
+      }
+    ]
+  },
+  "session_cleanup": {
+    "steps": [
+      {
+        "order": 1,
+        "action": "update_feature_status",
+        "description": "更新功能完成状态"
+      },
+      {
+        "order": 2,
+        "action": "git_add_commit",
+        "commit_message_template": "feat: complete {feature_id} - {feature_description}",
+        "description": "Git提交更改"
+      },
+      {
+        "order": 3,
+        "action": "update_progress_file",
+        "description": "更新进度文件"
+      }
+    ]
+  },
+  "feature_selection": {
+    "strategy": "priority_first",
+    "priority_order": ["critical", "high", "medium", "low"],
+    "skip_completed": true
+  },
+  "testing": {
+    "e2e_required": true,
+    "screenshot_on_test": true,
+    "test_frameworks": ["jest", "playwright"],
+    "browser_automation": "puppeteer"
+  },
+  "constraints": {
+    "strict_rules": [
+      "不得删除或修改现有测试用例",
+      "不得在未完成端到端测试前标记功能为完成",
+      "每次会话只能专注于一个功能",
+      "会话结束时必须保持代码在可提交状态",
+      "必须使用有意义的Git提交消息",
+      "不得跳过进度文件更新"
+    ],
+    "forbidden_actions": [
+      "删除feature_list.json中的功能项",
+      "在没有测试的情况下将passes改为true",
+      "一次性实现多个功能",
+      "提交包含语法错误的代码",
+      "忽略已有的代码规范"
+    ]
+  },
+  "git_settings": {
+    "auto_commit": true,
+    "commit_message_format": "type(scope): description",
+    "commit_types": {
+      "feat": "新功能",
+      "fix": "修复bug",
+      "docs": "文档更新",
+      "style": "代码格式",
+      "refactor": "重构",
+      "test": "测试相关",
+      "chore": "构建/工具相关"
+    },
+    "branch_strategy": "main"
+  },
+  "logging": {
+    "log_level": "info",
+    "log_to_file": true,
+    "log_file": "agent.log",
+    "include_timestamp": true
+  },
+  "notifications": {
+    "on_feature_complete": true,
+    "on_error": true,
+    "on_session_end": true
+  }
+}

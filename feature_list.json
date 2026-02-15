@@ -1,0 +1,218 @@
+{
+  "project_info": {
+    "name": "Personal Web",
+    "description": "个人网站项目",
+    "created_at": "2025-02-15",
+    "version": "0.1.0"
+  },
+  "categories": [
+    "core",
+    "ui",
+    "functionality",
+    "performance",
+    "accessibility",
+    "seo"
+  ],
+  "features": [
+    {
+      "id": "F001",
+      "category": "core",
+      "description": "项目基础结构初始化",
+      "steps": [
+        "创建项目目录结构",
+        "配置package.json",
+        "设置基础HTML模板",
+        "配置CSS样式框架",
+        "验证项目可以正常启动"
+      ],
+      "priority": "critical",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F002",
+      "category": "ui",
+      "description": "响应式导航栏组件",
+      "steps": [
+        "创建导航栏HTML结构",
+        "实现响应式设计",
+        "添加移动端汉堡菜单",
+        "测试不同屏幕尺寸下的显示效果",
+        "验证导航链接可点击"
+      ],
+      "priority": "high",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F003",
+      "category": "ui",
+      "description": "首页Hero区域",
+      "steps": [
+        "设计Hero区域布局",
+        "添加标题和副标题",
+        "添加行动号召按钮",
+        "实现背景效果",
+        "验证文字可读性"
+      ],
+      "priority": "high",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F004",
+      "category": "functionality",
+      "description": "项目展示区域",
+      "steps": [
+        "创建项目卡片组件",
+        "实现项目列表布局",
+        "添加项目详情链接",
+        "实现悬停效果",
+        "验证链接跳转正确"
+      ],
+      "priority": "high",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F005",
+      "category": "functionality",
+      "description": "技能展示区域",
+      "steps": [
+        "设计技能展示布局",
+        "创建技能进度条组件",
+        "添加技能图标",
+        "实现动画效果",
+        "验证技能分类清晰"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F006",
+      "category": "ui",
+      "description": "联系方式区域",
+      "steps": [
+        "创建联系表单",
+        "添加社交媒体链接",
+        "实现表单验证",
+        "添加成功/错误提示",
+        "验证表单可提交"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F007",
+      "category": "ui",
+      "description": "页脚组件",
+      "steps": [
+        "设计页脚布局",
+        "添加版权信息",
+        "添加快速链接",
+        "实现响应式设计",
+        "验证所有链接有效"
+      ],
+      "priority": "low",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F008",
+      "category": "functionality",
+      "description": "深色/浅色主题切换",
+      "steps": [
+        "定义CSS变量主题",
+        "创建主题切换按钮",
+        "实现主题持久化(localStorage)",
+        "测试两种主题下的显示效果",
+        "验证主题切换平滑过渡"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F009",
+      "category": "performance",
+      "description": "图片懒加载",
+      "steps": [
+        "实现懒加载逻辑",
+        "添加加载占位符",
+        "处理加载错误",
+        "测试滚动加载效果",
+        "验证性能提升"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F010",
+      "category": "accessibility",
+      "description": "键盘导航支持",
+      "steps": [
+        "添加focus样式",
+        "实现Tab键导航",
+        "添加跳转链接",
+        "使用屏幕阅读器测试",
+        "验证WCAG 2.1 AA合规"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F011",
+      "category": "seo",
+      "description": "SEO元数据优化",
+      "steps": [
+        "添加meta描述标签",
+        "配置Open Graph标签",
+        "添加结构化数据",
+        "创建sitemap.xml",
+        "验证Google搜索控制台"
+      ],
+      "priority": "medium",
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "F012",
+      "category": "performance",
+      "description": "性能优化",
+      "steps": [
+        "压缩CSS/JS文件",
+        "优化图片格式",
+        "配置浏览器缓存",
+        "使用Lighthouse测试",
+        "验证性能得分>90"
+      ],
+      "priority": "high",
+      "passes": false,
+      "notes": ""
+    }
+  ],
+  "statistics": {
+    "total_features": 12,
+    "completed": 0,
+    "in_progress": 0,
+    "pending": 12,
+    "by_category": {
+      "core": 1,
+      "ui": 4,
+      "functionality": 3,
+      "performance": 2,
+      "accessibility": 1,
+      "seo": 1
+    },
+    "by_priority": {
+      "critical": 1,
+      "high": 4,
+      "medium": 6,
+      "low": 1
+    }
+  }
+}

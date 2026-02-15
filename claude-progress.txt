@@ -1,0 +1,71 @@
+# Claude Agent Progress Log
+# 长时间运行智能体进度跟踪文件
+# ============================================
+#
+# 此文件用于记录智能体在每个会话中的工作进展
+# 每个会话结束后，智能体应更新此文件
+#
+# 格式说明:
+# - 每个会话以 ## Session N - 日期时间 开始
+# - 记录完成的功能ID
+# - 记录遇到的问题和解决方案
+# - 记录当前状态和下一步计划
+#
+# 重要: 智能体在每个新会话开始时应首先阅读此文件
+# ============================================
+
+## Project Info
+- Project Name: Personal Web
+- Created: 2025-02-15
+- Framework: Long-Running Agent Harness (Anthropic)
+- Total Features: 12
+
+## Session 0 - 2025-02-15 (Initial Setup)
+### Status: PROJECT INITIALIZED
+### Actions:
+- [x] 创建项目基础文件结构
+- [x] 初始化Git仓库
+- [x] 创建feature_list.json功能清单
+- [x] 创建claude-progress.txt进度文件
+- [x] 创建init.sh启动脚本
+- [x] 创建智能体配置文件
+- [x] 创建提示词模板
+
+### Completed Features: None
+### Current Focus: F001 - 项目基础结构初始化
+### Next Steps:
+1. 运行init.sh配置开发环境
+2. 开始实现F001
+3. 完成后更新feature_list.json
+
+### Notes:
+- 项目刚初始化，等待第一个编码会话
+- 所有功能状态为pending
+- 建议按优先级顺序实现功能
+
+---
+<!-- 以下为会话记录模板，每次新会话复制并填写 -->
+
+## Session Template
+### Status: [IN_PROGRESS/COMPLETED/BLOCKED]
+### Actions:
+- [ ] 动作1
+- [ ] 动作2
+
+### Completed Features: [列出完成的功能ID]
+### Current Focus: [当前正在工作的功能ID]
+### Next Steps:
+1. 下一步计划1
+2. 下一步计划2
+
+### Issues/Blockers:
+- [记录遇到的问题]
+
+### Testing Results:
+- [记录测试结果]
+
+### Git Commits:
+- [commit_hash] - [commit message]
+
+### Notes:
+- [其他备注]
