@@ -354,6 +354,13 @@ a {
 }
 
 /* PDF链接 */
+.cv-pdf-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
 .cv-pdf-link {
   display: inline-flex;
   align-items: center;
