@@ -1,10 +1,10 @@
 ---
-interface Props { logo?: string; image?: string; color: string; title: string; subtitle: string; date: string; }
-const { logo, image, color, title, subtitle, date } = Astro.props;
+interface Props { logo?: string; image?: string; logoPath?: string; color: string; title: string; subtitle: string; date: string; }
+const { logo, image, logoPath, color, title, subtitle, date } = Astro.props;
 ---
 <article class="timeline-item reveal">
-  <span class:list={['timeline-logo', { 'has-image': image }]} style={`--logo-color:${color}`}>
-    {image ? <img src={image} alt={`${title}标志`} /> : logo}
+  <span class:list={['timeline-logo', { 'has-image': image, 'has-symbol': logoPath }]} style={`--logo-color:${color}`}>
+    {image ? <img src={image} alt={`${title}标志`} /> : logoPath ? <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d={logoPath}></path></svg> : logo}
   </span>
   <div class="timeline-copy"><h3>{title}</h3><p>{subtitle}</p></div>
   <time>{date}</time>

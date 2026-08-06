@@ -14,7 +14,8 @@ export const navigation = [
   { label: '首页', href: '/' },
   { label: '项目', href: '/projects/' },
   { label: '研究', href: '/research/' },
-  { label: '文章', href: '/writing/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: '实习', href: '/internships/' },
   { label: '关于', href: '/about/' },
   { label: '简历', href: '/cv/' },
 ] as const;

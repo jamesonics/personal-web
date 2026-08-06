@@ -1,0 +1,29 @@
+---
+import { siBytedance } from 'simple-icons';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InternshipCard from '../components/InternshipCard.astro';
+import { experience } from '../data/profile';
+import { site } from '../data/site';
+---
+<BaseLayout title="实习" description="刘子涵在 Agent Infra、Agent 评测与智慧城市方向的实习经历。">
+  <div class="main-column page-content-layer">
+    <section class="page-header"><h1>实习经历</h1><p>从智慧城市方案研究到 Agent Infra 与评测平台建设，我希望理解技术如何在真实组织和业务流程中稳定运行。</p></section>
+    <section class="internship-list content-section">
+      {experience.map((item) => (
+        <InternshipCard
+          company={item.organization}
+          role={item.role}
+          period={item.period}
+          location={item.location}
+          accent={item.accent}
+          summary={item.summary}
+          bullets={item.bullets}
+          logoPath={item.logo === 'bytedance' ? siBytedance.path : undefined}
+          logoImage={item.logo === 'ctdi' ? `${site.base}/images/logos/ctdi.svg` : undefined}
+          draft={item.draft}
+        />
+      ))}
+    </section>
+    <section class="internship-note"><h2>关于字节跳动实习内容</h2><p>目前展示的是基于岗位方向的初版描述。后续在项目边界允许公开后，可以继续补充具体工作、技术栈、量化成果和代表案例。</p><a href={`mailto:${site.email}`}>联系我交流实习与 Agent 评测</a></section>
+  </div>
+</BaseLayout>

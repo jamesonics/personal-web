@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { siBytedance } from 'simple-icons';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ProjectListItem from '../components/ProjectListItem.astro';
@@ -51,9 +52,10 @@ const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((
     <section class="home-section">
       <SectionHeading title="学习与实践经历" />
       <div class="timeline-list">
+        <TimelineItem logoPath={siBytedance.path} color="#111111" title="字节跳动 · Fornax" subtitle="Agent Infra 实习生 · Agent 评测" date="2026.06 — 09" />
         <TimelineItem image={`${site.base}/images/logos/xjtu.png`} color="#ffffff" title="西安交通大学" subtitle="能源与动力工程学院 · 硕士研究生" date="2025 — 2028" />
         <TimelineItem image={`${site.base}/images/logos/ecust.png`} color="#ffffff" title="华东理工大学" subtitle="过程装备与控制工程 · 本科" date="2021 — 2025" />
-        <TimelineItem logo="CTDI" color="#24a148" title="广东省电信规划设计院" subtitle="集客线条业务实习生" date="2022" />
+        <TimelineItem image={`${site.base}/images/logos/ctdi.svg`} color="#ffffff" title="广东省电信规划设计院" subtitle="集客线条业务实习生" date="2022" />
       </div>
     </section>
 
@@ -74,15 +76,27 @@ const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((
 
     <section class="home-section">
       <div class="section-row">
-        <SectionHeading title="最新文章" description="记录研究、开发与项目复盘。" />
-        <a class="simple-link" href={`${site.base}/writing/`}>查看全部文章 <Icon name="arrow" size={18} /></a>
+        <SectionHeading title="最新 Blog" description="记录研究、开发与项目复盘。" />
+        <a class="simple-link" href={`${site.base}/blog/`}>查看全部 Blog <Icon name="arrow" size={18} /></a>
       </div>
       <div class="article-grid">{posts.map((post) => <ArticleCard post={post} />)}</div>
     </section>
 
-    <section class="home-section personal-card reveal">
-      <img src={`${site.base}/images/optimized/basketball-game.jpg`} alt="篮球比赛剪影" loading="lazy" />
-      <div><h2>研究之外</h2><p>我长期参与篮球训练，曾任学院篮球队队长并入选校男篮阳光组。篮球让我更重视长期投入、明确分工和团队协作。</p><a class="simple-link" href={`${site.base}/about/`}>了解更多 <Icon name="arrow" size={18} /></a></div>
+    <section class="home-section lifestyle-section reveal">
+      <div class="lifestyle-card">
+        <div class="lifestyle-media">
+          <span class="lifestyle-orbit"></span>
+          <img src={`${site.base}/images/optimized/basketball-game.jpg`} alt="篮球比赛剪影" loading="lazy" />
+          <span class="lifestyle-sticker">23</span>
+        </div>
+        <div class="lifestyle-copy">
+          <span class="lifestyle-label">Beyond Research</span>
+          <h2>研究之外，也在球场上保持长期投入</h2>
+          <p>我长期参与篮球训练，曾任学院篮球队队长并入选校男篮阳光组。篮球让我更重视长期投入、明确分工、临场判断和团队协作。</p>
+          <div class="lifestyle-tags"><span>学院篮球队队长</span><span>校男篮阳光组</span><span>团队协作</span></div>
+          <a class="button lifestyle-button" href={`${site.base}/about/`}>了解我的另一面 <Icon name="arrow" size={19} /></a>
+        </div>
+      </div>
     </section>
   </div>
 </BaseLayout>

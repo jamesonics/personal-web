@@ -1,11 +1,8 @@
 ---
-import { getCollection, render } from 'astro:content';
-import ArticleLayout from '../../layouts/ArticleLayout.astro';
-export async function getStaticPaths() {
-  const posts = await getCollection('writing', ({ data }) => !data.draft);
-  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
-}
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+export async function getStaticPaths() { const posts = await getCollection('writing', ({ data }) => !data.draft); return posts.map((post) => ({ params: { id: post.id }, props: { post } })); }
 const { post } = Astro.props;
-const { Content } = await render(post);
+const destination = `${site.base}/blog/${post.id}/`;
 ---
-<ArticleLayout {...post.data}><Content /></ArticleLayout>
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta http-equiv="refresh" content={`0; url=${destination}`}/><title>Redirecting...</title></head><body><p>文章已迁移到 <a href={destination}>Blog</a>。</p></body></html>

@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Icon from '../../components/Icon.astro';
+const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Blog" description="关于 AI Agent、RAG、研究工作流与项目复盘的文章。">
+  <div class="main-column page-content-layer">
+    <section class="page-header"><h1>Blog</h1><p>记录研究方法、Agent 工程实践、项目复盘和个人思考。</p><div class="search-shell"><Icon name="search" /><input type="search" placeholder="搜索 Blog" aria-label="搜索 Blog" data-article-search /></div></section>
+    <section class="content-section"><div class="article-grid article-index" data-article-list>{posts.map((post) => <ArticleCard post={post} />)}</div><p class="empty-state" data-empty-state hidden>没有找到相关文章。</p></section>
+  </div>
+</BaseLayout>
+<script>
+  const searchInput = document.querySelector<HTMLInputElement>('[data-article-search]');
+  searchInput?.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    let matches = 0;
+    document.querySelectorAll<HTMLElement>('[data-article-list] .article-card').forEach((card) => {
+      const visible = !query || (card.textContent ?? '').toLowerCase().includes(query);
+      card.hidden = !visible;
+      if (visible) matches += 1;
+    });
+    const empty = document.querySelector<HTMLElement>('[data-empty-state]');
+    if (empty) empty.hidden = matches > 0;
+  });
+</script>

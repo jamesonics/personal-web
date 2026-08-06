@@ -6,7 +6,7 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month:
 ---
 <BaseLayout title={title} description={description}>
   <article class="article-page main-column" data-pagefind-body>
-    <a class="back-link" href={`${site.base}/writing/`}>← 返回文章列表</a>
+    <a class="back-link" href={`${site.base}/blog/`}>← 返回 Blog</a>
     <header class="article-header">
       <div class="article-kicker"><span>{category}</span><time>{formattedDate}</time></div>
       <h1>{title}</h1>

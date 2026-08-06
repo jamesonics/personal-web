@@ -5,7 +5,7 @@ interface Props { post: any; }
 const { post } = Astro.props;
 const date = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(post.data.date);
 ---
-<a class="article-card reveal" href={`${site.base}/writing/${post.id}/`}>
+<a class="article-card reveal" href={`${site.base}/blog/${post.id}/`}>
   <div class="article-meta"><span>{post.data.category}</span><time>{date}</time></div>
   <h3>{post.data.title}</h3>
   <p>{post.data.description}</p>

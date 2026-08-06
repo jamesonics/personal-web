@@ -17,9 +17,29 @@ export const education = [
 
 export const experience = [
   {
+    organization: '字节跳动 · Fornax',
+    role: 'Agent Infra 实习生 · Agent 评测方向',
+    period: '2026.06 — 2026.09',
+    location: '北京 / 中国',
+    accent: '#111111',
+    logo: 'bytedance',
+    draft: true,
+    summary: '参与 Fornax 平台的 Agent 评测与基础设施建设，支持智能体实验、数据集管理与评测链路迭代。',
+    bullets: [
+      '参与 Agent 评测任务的流程设计与工程实现，关注评测目标、数据集和实验运行之间的可追溯性。',
+      '协助完善评测平台的调用链路与结果分析能力，为 Agent 开发和迭代提供稳定的基础设施支持。',
+      '参与真实业务场景中的问题定位、评测反馈与工具链优化。',
+    ],
+  },
+  {
     organization: '广东省电信规划设计院（长沙分院）',
     role: '集客线条业务实习生',
-    period: '2022 · 长沙',
+    period: '2022',
+    location: '长沙 / 中国',
+    accent: '#1aa260',
+    logo: 'ctdi',
+    draft: false,
+    summary: '参与智慧城市建设推广与沿江渡口视频监控布置项目，完成前期研究、数据整理和方案支持。',
     bullets: [
       '参与长沙市开福区智慧城市建设推广，负责政策与案例研究、汇报材料制作。',
       '参与湖北省沿江渡口视频监控布置，完成点位信息收集、地图定位与成本评估。',
