@@ -7,7 +7,7 @@ const { project, number } = Astro.props;
 const initials = project.englishTitle.split(' ').map((word) => word[0]).join('').slice(0, 3).toUpperCase();
 ---
 <a class="project-card" href={`${site.base}/projects/${project.slug}/`}>
-  <div class="project-cover">
+  <div class:list={['project-cover', `project-cover-${project.accent}`]}>
     <span>{number ?? initials}</span>
     <strong>{initials}</strong>
   </div>

@@ -18,6 +18,16 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  const dock = document.querySelector('.floating-dock');
+  let lastScrollY = window.scrollY;
+  const updateDock = () => {
+    if (!dock) return;
+    const current = window.scrollY;
+    dock.classList.toggle('is-hidden', current > lastScrollY && current > 320);
+    lastScrollY = current;
+  };
+  window.addEventListener('scroll', updateDock, { passive: true });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {

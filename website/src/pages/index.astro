@@ -5,13 +5,17 @@ import SectionHeading from '../components/SectionHeading.astro';
 import ProjectListItem from '../components/ProjectListItem.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import Icon from '../components/Icon.astro';
+import DotCanvas from '../components/DotCanvas.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import SkillPills from '../components/SkillPills.astro';
 import { featuredProjects } from '../data/projects';
 import { site, stats } from '../data/site';
 const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
 ---
 <BaseLayout>
-  <div class="main-column">
-    <section class="hero">
+  <section class="hero-shell">
+    <DotCanvas />
+    <div class="main-column hero">
       <div class="hero-copy reveal">
         <h1>你好，我是刘子涵</h1>
         <p class="hero-role">西安交通大学硕士研究生，研究方向为 AI Agent 与 RAG。</p>
@@ -21,8 +25,13 @@ const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((
           <a class="button secondary" href={`${site.base}/docs/CV_Chinese.pdf`} target="_blank">下载简历 <Icon name="download" /></a>
         </div>
       </div>
-      <img class="hero-avatar reveal" src={`${site.base}/images/profile.jpg`} alt="刘子涵" width="643" height="900" />
-    </section>
+      <div class="hero-avatar-wrap reveal">
+        <span class="avatar-blob blob-one"></span><span class="avatar-blob blob-two"></span>
+        <img class="hero-avatar" src={`${site.base}/images/profile.jpg`} alt="刘子涵" width="643" height="900" />
+      </div>
+    </div>
+  </section>
+  <div class="main-column">
 
     <section class="home-section">
       <SectionHeading title="关于我" />
@@ -36,6 +45,21 @@ const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((
         <article class="focus-card reveal"><h3>RAG 与评测</h3><p>建立可追溯的检索、引用和回归评测链路。</p></article>
         <article class="focus-card reveal"><h3>多智能体协作</h3><p>研究复杂任务中的分工、工具调用与人工确认。</p></article>
       </div>
+    </section>
+
+
+    <section class="home-section">
+      <SectionHeading title="学习与实践经历" />
+      <div class="timeline-list">
+        <TimelineItem image={`${site.base}/images/logos/xjtu.png`} color="#ffffff" title="西安交通大学" subtitle="能源与动力工程学院 · 硕士研究生" date="2025 — 2028" />
+        <TimelineItem image={`${site.base}/images/logos/ecust.png`} color="#ffffff" title="华东理工大学" subtitle="过程装备与控制工程 · 本科" date="2021 — 2025" />
+        <TimelineItem logo="CTDI" color="#24a148" title="广东省电信规划设计院" subtitle="集客线条业务实习生" date="2022" />
+      </div>
+    </section>
+
+    <section class="home-section">
+      <SectionHeading title="技能与工具" />
+      <SkillPills />
     </section>
 
     <section class="home-section">
