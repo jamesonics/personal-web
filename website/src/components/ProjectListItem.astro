@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import type { Project } from '../data/projects';
+import { site } from '../data/site';
+interface Props { project: Project; number?: string; }
+const { project, number } = Astro.props;
+---
+<a class="project-list-item" href={`${site.base}/projects/${project.slug}/`}>
+  {number && <span class="project-number">{number}</span>}
+  <div class="project-list-main">
+    <div class="project-list-heading">
+      <h3>{project.title}</h3>
+      <span>{project.year}</span>
+    </div>
+    <p>{project.summary}</p>
+    <div class="project-list-tags">
+      {project.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
+    </div>
+  </div>
+  <div class="project-list-side">
+    <span>{project.role}</span>
+    <Icon name="arrow" size={22} />
+  </div>
+</a>

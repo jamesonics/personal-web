@@ -35,16 +35,5 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -30px' });
   document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('[data-tilt]').forEach((card) => {
-      card.addEventListener('pointermove', (event) => {
-        const rect = card.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - .5;
-        const y = (event.clientY - rect.top) / rect.height - .5;
-        card.style.transform = `perspective(900px) rotateX(${y * -3.5}deg) rotateY(${x * 4.5}deg) translateY(-3px)`;
-      });
-      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-    });
-  }
 
 })();
