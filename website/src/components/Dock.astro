@@ -3,10 +3,10 @@ import Icon from './Icon.astro';
 import { site } from '../data/site';
 ---
 <nav class="floating-dock" aria-label="快捷入口">
-  <a href={`${site.base}/`} aria-label="首页"><span>⌂</span></a>
-  <a href={`${site.base}/projects/`} aria-label="项目"><span>◇</span></a>
-  <a href={`${site.base}/writing/`} aria-label="文章"><span>✎</span></a>
+  <a href={`${site.base}/`} aria-label="首页"><span class="dock-tooltip">首页</span><Icon name="home" size={27} /></a>
+  <a href={`${site.base}/projects/`} aria-label="项目"><span class="dock-tooltip">项目</span><Icon name="folder" size={27} /></a>
+  <a href={`${site.base}/writing/`} aria-label="文章"><span class="dock-tooltip">文章</span><Icon name="writing" size={27} /></a>
   <i></i>
-  <a href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" size={18} /></a>
-  <a href={`mailto:${site.email}`} aria-label="邮箱"><Icon name="mail" size={18} /></a>
+  <a href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub"><span class="dock-tooltip">GitHub</span><Icon name="github" size={27} /></a>
+  <a href={`mailto:${site.email}`} aria-label="邮箱"><span class="dock-tooltip">邮箱</span><Icon name="mail" size={27} /></a>
 </nav>

@@ -28,6 +28,19 @@
   };
   window.addEventListener('scroll', updateDock, { passive: true });
 
+  document.querySelectorAll('.floating-dock a').forEach((item) => {
+    const icon = item.querySelector('svg');
+    const setHovered = (hovered) => {
+      item.classList.toggle('is-hovered', hovered);
+      item.style.transform = hovered ? 'translateY(-8px)' : '';
+      if (icon) icon.style.transform = hovered ? 'scale(1.32)' : '';
+    };
+    item.addEventListener('pointerenter', () => setHovered(true));
+    item.addEventListener('pointerleave', () => setHovered(false));
+    item.addEventListener('focus', () => setHovered(true));
+    item.addEventListener('blur', () => setHovered(false));
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {

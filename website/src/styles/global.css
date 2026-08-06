@@ -312,3 +312,75 @@ img { display: block; max-width: 100%; }
 .timeline-logo.has-image img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
 .floating-dock { transition: opacity .25s ease, transform .25s ease; }
 .floating-dock.is-hidden { opacity: 0; pointer-events: none; transform: translate(-50%, 22px); }
+
+/* Larger, more confident layout and dock details */
+:root { --font: 'Nunito Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif; }
+.main-column { width: min(960px, calc(100% - 48px)); }
+.header-inner { width: min(1080px, calc(100% - 48px)); grid-template-columns: 44px auto 44px; display: grid; }
+.header-spacer { width: 44px; }
+.desktop-nav { justify-self: center; }
+.header-actions { justify-self: end; }
+.hero { grid-template-columns: minmax(0, 1fr) 220px; min-height: 560px; padding-top: 120px; padding-bottom: 90px; gap: 90px; }
+.hero h1 { font-size: clamp(48px, 5vw, 64px); font-weight: 800; }
+.hero-role { font-size: 23px; line-height: 1.55; }
+.hero-intro { max-width: 720px; font-size: 19px; line-height: 1.85; }
+.hero-avatar-wrap { width: 210px; height: 210px; }
+.hero-avatar { width: 180px; height: 180px; border-width: 8px; }
+.blob-two { width: 105px; height: 105px; }
+.home-section, .content-section { padding: 58px 0; }
+.section-heading h2 { font-size: 29px; font-weight: 800; }
+.section-description { font-size: 18px; }
+.about-summary, .long-copy { font-size: 19px; }
+.focus-card { min-height: 195px; padding: 27px; }
+.focus-card h3 { font-size: 21px; }.focus-card p { font-size: 17px; }
+.timeline-item { grid-template-columns: 66px minmax(0,1fr) auto; gap: 22px; }
+.timeline-logo { width: 62px; height: 62px; }
+.timeline-copy h3 { font-size: 20px; }.timeline-copy p { font-size: 17px; }.timeline-item time { font-size: 16px; }
+.skill-pill { min-height: 48px; padding-inline: 19px; font-size: 16px; }
+.skill-pill svg { width: 21px; height: 21px; }
+.project-card-grid, .article-grid { gap: 20px; }
+.project-cover { height: 180px; }.project-cover strong { font-size: 43px; }
+.project-card-heading h3 { font-size: 22px; }.project-card-content > p { font-size: 17px; }
+.article-card { min-height: 285px; padding: 26px; }.article-card h3 { font-size: 23px; }.article-card > p { font-size: 17px; }
+.page-header h1, .about-header h1, .cv-header h1 { font-size: 50px; }.page-header > p, .about-header p { font-size: 19px; }
+.floating-dock { bottom: 24px; padding: 10px; gap: 7px; border-radius: 25px; box-shadow: 0 16px 44px rgba(0,0,0,.16); }
+.floating-dock a { position: relative; width: 55px; height: 55px; border: 1px solid var(--border); border-radius: 17px; background: white; }
+.floating-dock a::before { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 16px); transform: translate(-50%, 8px) scale(.92); padding: 9px 16px; border-radius: 13px; background: var(--black); color: white; font-size: 15px; font-weight: 700; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .18s ease, transform .18s ease; }
+.floating-dock a::after { content: ''; position: absolute; left: 50%; bottom: calc(100% + 9px); transform: translateX(-50%); border: 7px solid transparent; border-top-color: var(--black); opacity: 0; transition: opacity .18s ease; }
+.floating-dock a:hover { transform: translateY(-8px) scale(1.15); background: var(--surface); }
+.floating-dock a:hover::before { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.floating-dock a:hover::after { opacity: 1; }
+.floating-dock i { height: 34px; margin-inline: 5px; }
+@media (max-width: 760px) {
+  .main-column { width: min(100% - 30px, 960px); }
+  .header-inner { width: calc(100% - 30px); display: flex; justify-content: flex-end; }
+  .header-spacer { display: none; }
+  .hero { padding-top: 85px; padding-bottom: 65px; grid-template-columns: 1fr; gap: 32px; }
+  .hero-avatar-wrap { width: 155px; height: 155px; }
+  .hero-avatar { width: 135px; height: 135px; }
+  .hero h1 { font-size: 43px; }.hero-role { font-size: 19px; }.hero-intro { font-size: 17px; }
+  .home-section, .content-section { padding: 44px 0; }
+  .section-heading h2 { font-size: 27px; }
+  .timeline-item { grid-template-columns: 52px minmax(0,1fr); }
+  .timeline-logo { width: 50px; height: 50px; }
+  .timeline-copy h3 { font-size: 18px; }.timeline-copy p { font-size: 15px; }
+  .skill-pill { min-height: 42px; padding-inline: 14px; font-size: 14px; }
+  .project-cover { height: 150px; }
+}
+/* Explicit dock tooltips for mouse and keyboard users */
+.floating-dock a::before,
+.floating-dock a::after { content: none; }
+.dock-tooltip { position: absolute; left: 50%; bottom: calc(100% + 16px); transform: translate(-50%, 8px) scale(.92); padding: 9px 16px; border-radius: 13px; background: var(--black); color: white; font-size: 15px; font-weight: 700; white-space: nowrap; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
+.dock-tooltip::after { content: ''; position: absolute; left: 50%; top: 100%; transform: translateX(-50%); border: 7px solid transparent; border-top-color: var(--black); }
+.floating-dock a:hover .dock-tooltip,
+.floating-dock a:focus-visible .dock-tooltip,
+.floating-dock a.is-hovered .dock-tooltip { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); transition-delay: 0s; }
+.floating-dock a:focus-visible { outline: 3px solid rgba(23,23,23,.18); outline-offset: 2px; transform: translateY(-8px) scale(1.15); }
+.floating-dock a.is-hovered {
+  transform: translateY(-8px) scale(1.15);
+  background: var(--surface);
+}
+.floating-dock a > svg { transition: transform .18s ease; transform-origin: center; }
+.floating-dock a:hover > svg,
+.floating-dock a:focus-visible > svg,
+.floating-dock a.is-hovered > svg { transform: scale(1.32); }

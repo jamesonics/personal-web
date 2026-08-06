@@ -7,10 +7,7 @@ const active = (href: string) => href === '/' ? path === '/' || path === '' : pa
 ---
 <header class="site-header" data-header>
   <div class="header-inner">
-    <a class="brand" href={link('/')} aria-label={`${site.name}主页`}>
-      <span class="brand-avatar">刘</span>
-      <span class="brand-name">{site.name}</span>
-    </a>
+    <span class="header-spacer" aria-hidden="true"></span>
     <nav class="desktop-nav" aria-label="主导航">
       {navigation.map((item) => (
         <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
@@ -22,18 +19,8 @@ const active = (href: string) => href === '/' ? path === '/' || path === '' : pa
     </div>
   </div>
   <div class="mobile-menu" data-mobile-menu>
-    <div class="mobile-menu-top">
-      <strong>导航</strong>
-      <button class="icon-button" type="button" data-menu-close aria-label="关闭菜单"><Icon name="close" /></button>
-    </div>
-    <nav aria-label="移动端导航">
-      {navigation.map((item) => (
-        <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
-      ))}
-    </nav>
-    <div class="mobile-menu-contact">
-      <a href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a>
-      <a href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />GitHub</a>
-    </div>
+    <div class="mobile-menu-top"><strong>导航</strong><button class="icon-button" type="button" data-menu-close aria-label="关闭菜单"><Icon name="close" /></button></div>
+    <nav aria-label="移动端导航">{navigation.map((item) => <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav>
+    <div class="mobile-menu-contact"><a href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a><a href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />GitHub</a></div>
   </div>
 </header>
