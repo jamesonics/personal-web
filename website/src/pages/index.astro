@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import { siBytedance } from 'simple-icons';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ProjectListItem from '../components/ProjectListItem.astro';
@@ -52,10 +51,10 @@ const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((
     <section class="home-section">
       <SectionHeading title="学习与实践经历" />
       <div class="timeline-list">
-        <TimelineItem logoPath={siBytedance.path} color="#111111" title="字节跳动 · Fornax" subtitle="Agent Infra 实习生 · Agent 评测" date="2026.06 — 09" />
+        <TimelineItem image={`${site.base}/images/logos/bytedance.svg`} logoWide={true} color="#ffffff" title="字节跳动 · Fornax" subtitle="Agent Infra 实习生 · Agent 评测" date="2026.06 — 09" />
         <TimelineItem image={`${site.base}/images/logos/xjtu.png`} color="#ffffff" title="西安交通大学" subtitle="能源与动力工程学院 · 硕士研究生" date="2025 — 2028" />
         <TimelineItem image={`${site.base}/images/logos/ecust.png`} color="#ffffff" title="华东理工大学" subtitle="过程装备与控制工程 · 本科" date="2021 — 2025" />
-        <TimelineItem image={`${site.base}/images/logos/ctdi.svg`} color="#ffffff" title="广东省电信规划设计院" subtitle="集客线条业务实习生" date="2022" />
+        <TimelineItem image={`${site.base}/images/logos/gpdi.png`} logoWide={true} color="#ffffff" title="广东省电信规划设计院 · GPDI" subtitle="集客线条业务实习生" date="2022" />
       </div>
     </section>
 

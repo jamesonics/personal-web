@@ -1,5 +1,4 @@
 ---
-import { siBytedance } from 'simple-icons';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InternshipCard from '../components/InternshipCard.astro';
 import { experience } from '../data/profile';
@@ -18,8 +17,8 @@ import { site } from '../data/site';
           accent={item.accent}
           summary={item.summary}
           bullets={item.bullets}
-          logoPath={item.logo === 'bytedance' ? siBytedance.path : undefined}
-          logoImage={item.logo === 'ctdi' ? `${site.base}/images/logos/ctdi.svg` : undefined}
+          logoImage={item.logo === 'bytedance' ? `${site.base}/images/logos/bytedance.svg` : `${site.base}/images/logos/gpdi.png`}
+          logoWide={true}
           draft={item.draft}
         />
       ))}
