@@ -10,60 +10,55 @@ import { site, stats } from '../data/site';
 const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
 ---
 <BaseLayout>
-  <section class="hero container">
-    <div class="hero-copy">
-      <p class="hero-kicker reveal">西安交通大学硕士研究生 · AI Agent 研究与开发</p>
-      <h1 class="reveal"><span>你好，我是刘子涵。</span><em>研究并构建面向工程场景的 AI Agent。</em></h1>
-      <p class="hero-intro reveal">我的工作聚焦于垂类智能体、RAG 系统和多智能体协作，希望让 AI 真正进入科研与工程工作流。</p>
-      <div class="hero-actions reveal">
-        <a class="button primary" href={`${site.base}/projects/`}>查看项目 <Icon name="arrow" /></a>
-        <a class="button secondary" href={`${site.base}/docs/CV_Chinese.pdf`} target="_blank">下载简历 <Icon name="download" /></a>
+  <div class="main-column">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <h1>你好，我是刘子涵</h1>
+        <p class="hero-role">西安交通大学硕士研究生，研究方向为 AI Agent 与 RAG。</p>
+        <p class="hero-intro">我关注如何让大模型理解专业知识、调用工程工具，并真正进入科研与工程工作流。</p>
+        <div class="hero-actions">
+          <a class="button primary" href={`${site.base}/projects/`}>查看我的项目 <Icon name="arrow" /></a>
+          <a class="button secondary" href={`${site.base}/docs/CV_Chinese.pdf`} target="_blank">下载简历 <Icon name="download" /></a>
+        </div>
       </div>
-    </div>
-    <div class="hero-portrait reveal">
-      <div class="portrait-frame">
-        <img src={`${site.base}/images/profile.jpg`} alt="刘子涵" width="643" height="900" />
-        <div class="portrait-label"><span>刘子涵</span><span>{site.englishName}</span></div>
+      <img class="hero-avatar reveal" src={`${site.base}/images/profile.jpg`} alt="刘子涵" width="643" height="900" />
+    </section>
+
+    <section class="home-section">
+      <SectionHeading title="关于我" />
+      <p class="about-summary reveal">目前主要研究垂类智能体、RAG 评测和多智能体协作系统。本科阶段接受机械工程与产品创新训练，之后逐步将计算机视觉、大模型和智能体技术应用到真实工程问题中。</p>
+    </section>
+
+    <section class="home-section">
+      <SectionHeading title="研究方向" />
+      <div class="focus-grid">
+        <article class="focus-card reveal"><h3>垂类智能体</h3><p>让 Agent 理解专业知识、工程约束和任务流程。</p></article>
+        <article class="focus-card reveal"><h3>RAG 与评测</h3><p>建立可追溯的检索、引用和回归评测链路。</p></article>
+        <article class="focus-card reveal"><h3>多智能体协作</h3><p>研究复杂任务中的分工、工具调用与人工确认。</p></article>
       </div>
-      <div class="portrait-orbit" aria-hidden="true"><span>RAG</span><span>AGENT</span><span>RESEARCH</span></div>
-      <div class="portrait-stamp">XJTU<br/>2025—28</div>
-    </div>
-  </section>
+    </section>
 
-  <section class="stats-strip">
-    <div class="container stats-grid">
-      {stats.map((stat) => <div class="stat reveal"><strong data-count>{stat.value}</strong><span>{stat.label}</span></div>)}
-    </div>
-  </section>
-
-  <section class="section container">
-    <div class="section-topline"><SectionHeading eyebrow="代表项目" title="我正在解决的问题" description="精选三个当前最具代表性的项目。完整项目经历请进入 Projects 页面。" /><a class="text-link" href={`${site.base}/projects/`}>查看全部 8 个项目 <Icon name="arrow" size={18}/></a></div>
-    <div class="home-project-list">
-      {featuredProjects.map((project, index) => <ProjectListItem project={project} number={String(index + 1).padStart(2, '0')} />)}
-    </div>
-  </section>
-
-  <section class="research-band">
-    <div class="container research-grid">
-      <div class="research-statement reveal">
-        <p class="eyebrow">研究方向</p>
-        <h2>智能体的价值，不只在于回答，而在于进入专业工作流。</h2>
+    <section class="home-section">
+      <div class="section-row">
+        <SectionHeading title="代表项目" description="三个当前最具代表性的项目。" />
+        <a class="simple-link" href={`${site.base}/projects/`}>查看全部 {stats[0].value} 个项目 <Icon name="arrow" size={18} /></a>
       </div>
-      <div class="research-list">
-        <article class="reveal"><span>01</span><div><h3>Domain-specific Agents</h3><p>将领域知识、工程约束与工具链组织成可验证的任务执行系统。</p></div></article>
-        <article class="reveal"><span>02</span><div><h3>Retrieval & Evaluation</h3><p>建立可追溯的文档、检索、引用与回归评测链路。</p></div></article>
-        <article class="reveal"><span>03</span><div><h3>Human-Agent Collaboration</h3><p>在关键节点引入人工确认，让复杂任务保持可控、可定位和可复现。</p></div></article>
+      <div class="project-card-grid">
+        {featuredProjects.map((project, index) => <ProjectListItem project={project} number={String(index + 1).padStart(2, '0')} />)}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section container">
-    <div class="section-topline"><SectionHeading eyebrow="文章与思考" title="记录构建过程，也记录判断" description="关于 Agent 工程、研究方法、项目复盘与个人成长。" /><a class="text-link" href={`${site.base}/writing/`}>查看全部文章 <Icon name="arrow" size={18}/></a></div>
-    <div class="article-grid">{posts.map((post) => <ArticleCard post={post} />)}</div>
-  </section>
+    <section class="home-section">
+      <div class="section-row">
+        <SectionHeading title="最新文章" description="记录研究、开发与项目复盘。" />
+        <a class="simple-link" href={`${site.base}/writing/`}>查看全部文章 <Icon name="arrow" size={18} /></a>
+      </div>
+      <div class="article-grid">{posts.map((post) => <ArticleCard post={post} />)}</div>
+    </section>
 
-  <section class="personal-slice container reveal">
-    <div class="personal-image"><img src={`${site.base}/images/optimized/basketball-game.jpg`} alt="篮球比赛剪影" loading="lazy" /></div>
-    <div class="personal-copy"><p class="eyebrow">Beyond the lab</p><h2>研究之外，我也在球场上学习协作与坚持。</h2><p>曾任学院篮球队队长并入选校男篮阳光组。篮球塑造了我面对长期任务时的节奏感、责任感和团队意识。</p><a class="text-link" href={`${site.base}/about/`}>More about me <Icon name="arrow" size={18}/></a></div>
-  </section>
+    <section class="home-section personal-card reveal">
+      <img src={`${site.base}/images/optimized/basketball-game.jpg`} alt="篮球比赛剪影" loading="lazy" />
+      <div><h2>研究之外</h2><p>我长期参与篮球训练，曾任学院篮球队队长并入选校男篮阳光组。篮球让我更重视长期投入、明确分工和团队协作。</p><a class="simple-link" href={`${site.base}/about/`}>了解更多 <Icon name="arrow" size={18} /></a></div>
+    </section>
+  </div>
 </BaseLayout>

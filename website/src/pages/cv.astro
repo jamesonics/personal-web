@@ -1,27 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import { education, experience, honors, patents, skillGroups } from '../data/profile';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
 ---
-<BaseLayout title="CV" description="刘子涵的教育、研究、项目、技能、实习、奖项与专利经历。">
-  <section class="cv-header container">
-    <div><p class="eyebrow">Curriculum Vitae</p><h1>{site.name}<br/><em>{site.englishName}</em></h1><p>{site.title}<br/>{site.affiliation}</p></div>
-    <div class="cv-actions"><a class="button primary" href={`${site.base}/docs/CV_Chinese.pdf`} target="_blank">中文简历 <Icon name="download" /></a><a class="button secondary" href={`${site.base}/docs/CV_English.pdf`} target="_blank">English CV <Icon name="download" /></a></div>
-  </section>
-  <div class="cv-page container" data-pagefind-body>
-    <aside class="cv-sidebar">
-      <section><h2>Contact</h2><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.github} target="_blank">github.com/topjames666</a></section>
-      <section><h2>Research</h2><p>Domain-specific Agents</p><p>RAG & Evaluation</p><p>Multi-Agent Systems</p><p>AI for Engineering</p></section>
-      <section><h2>Skills</h2>{skillGroups.map((group) => <div class="cv-skill-group"><h3>{group.title}</h3><p>{group.skills.join(' · ')}</p></div>)}</section>
-      <section><h2>Patents</h2>{patents.map((patent) => <p><strong>{patent.title}</strong><br/>{patent.role}<br/><small>{patent.number}</small></p>)}</section>
-    </aside>
-    <div class="cv-main">
-      <section class="cv-block"><h2>Education</h2>{education.map((item) => <article><div><h3>{item.school}</h3><p>{item.degree}</p><small>{item.meta} · {item.details}</small></div><time>{item.period}</time></article>)}</section>
-      <section class="cv-block"><h2>Selected Projects</h2>{projects.slice(0, 6).map((project) => <article><div><h3>{project.title}</h3><p>{project.role} · {project.summary}</p><small>{project.tags.join(' · ')}</small></div><time>{project.year}</time></article>)}</section>
-      <section class="cv-block" id="experience"><h2>Experience</h2>{experience.map((item) => <article><div><h3>{item.organization}</h3><p>{item.role}</p><ul>{item.bullets.map((bullet) => <li>{bullet}</li>)}</ul></div><time>{item.period}</time></article>)}</section>
-      <section class="cv-block" id="honors"><h2>Honors</h2>{honors.map((honor) => <article class="honor-row"><div><h3>{honor.title}</h3><small>{honor.type}</small></div><time>{honor.year}</time></article>)}</section>
-    </div>
+<BaseLayout title="简历" description="刘子涵的教育、研究、项目、技能、实习、奖项与专利经历。">
+  <div class="main-column cv-container" data-pagefind-body>
+    <section class="cv-header">
+      <div><h1>个人简历</h1><p>{site.name} · {site.title}<br/>{site.affiliation}</p></div>
+      <div class="cv-actions"><a class="button primary" href={`${site.base}/docs/CV_Chinese.pdf`} target="_blank">中文简历 <Icon name="download" /></a><a class="button secondary" href={`${site.base}/docs/CV_English.pdf`} target="_blank">英文简历 <Icon name="download" /></a></div>
+    </section>
+    <section class="cv-contact-card"><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.github} target="_blank">github.com/topjames666</a></section>
+    <section class="content-section"><SectionHeading title="教育经历" /><div class="simple-timeline">{education.map((item) => <article><div><h3>{item.school}</h3><p>{item.degree}</p><span>{item.meta} · {item.details}</span></div><time>{item.period}</time></article>)}</div></section>
+    <section class="content-section"><SectionHeading title="研究与技能" /><div class="skill-groups">{skillGroups.map((group) => <article><h3>{group.title}</h3><div>{group.skills.map((skill) => <span>{skill}</span>)}</div></article>)}</div></section>
+    <section class="content-section"><SectionHeading title="代表项目" /><div class="cv-list">{projects.slice(0, 6).map((project) => <article><div><h3>{project.title}</h3><p>{project.role} · {project.summary}</p></div><time>{project.year}</time></article>)}</div></section>
+    <section class="content-section" id="experience"><SectionHeading title="实习经历" /><div class="cv-list">{experience.map((item) => <article><div><h3>{item.organization}</h3><p>{item.role}</p><ul>{item.bullets.map((bullet) => <li>{bullet}</li>)}</ul></div><time>{item.period}</time></article>)}</div></section>
+    <section class="content-section" id="honors"><SectionHeading title="奖项与专利" /><div class="honors-grid"><div>{honors.map((honor) => <article><h3>{honor.title}</h3><span>{honor.year}</span></article>)}</div><div>{patents.map((patent) => <article><h3>{patent.title}</h3><p>{patent.role} · {patent.number}</p></article>)}</div></div></section>
   </div>
 </BaseLayout>

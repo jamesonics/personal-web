@@ -44,19 +44,19 @@ export const patents = [
 
 export const skillGroups = [
   {
-    title: 'Agent & LLM',
+    title: '智能体与大模型',
     skills: ['LangChain', 'LangGraph', 'DeepAgents', 'Prompt Engineering', 'MCP'],
   },
   {
-    title: 'Retrieval & Research',
+    title: '检索与科研工具',
     skills: ['RAG', 'Qdrant', 'Ollama Embedding', 'Evaluation', 'Paper Automation'],
   },
   {
-    title: 'Engineering',
+    title: '工程开发',
     skills: ['Python', 'AsyncIO', 'Docker', 'Flask', 'Playwright', 'Git'],
   },
   {
-    title: 'AI & Vision',
+    title: '人工智能与视觉',
     skills: ['PyTorch', 'YOLOv5', 'Multimodal Models', 'Data Annotation'],
   },
 ] as const;

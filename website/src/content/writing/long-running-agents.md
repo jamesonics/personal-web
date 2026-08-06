@@ -2,7 +2,7 @@
 title: 长时间运行 Coding Agent 的三个工程原则
 description: 如何通过状态文件、可验证任务和小步提交，避免 Agent 在长任务中迷失或过早宣布完成。
 date: 2026-07-12
-category: Workflow
+category: 工作方法
 tags: [Coding Agent, Workflow, Verification]
 readingTime: 7 min read
 featured: true

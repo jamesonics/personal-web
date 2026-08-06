@@ -6,35 +6,34 @@ const link = (href: string) => `${site.base}${href}`.replace(/\/+/g, '/');
 const active = (href: string) => href === '/' ? path === '/' || path === '' : path.startsWith(href);
 ---
 <header class="site-header" data-header>
-  <a class="brand" href={link('/')} aria-label={`${site.name} homepage`}>
-    <span class="brand-mark">JL</span>
-    <span class="brand-copy"><strong>{site.englishName}</strong><small>Research & Build</small></span>
-  </a>
-  <nav class="desktop-nav" aria-label="Primary navigation">
-    {navigation.map((item) => (
-      <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
-    ))}
-  </nav>
-  <div class="header-actions">
-    <a class="icon-button desktop-action" href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" /></a>
-    <button class="icon-button" type="button" data-theme-toggle aria-label="切换深浅色"><Icon name="moon" /><span class="theme-sun"><Icon name="sun" /></span></button>
-    <button class="icon-button mobile-menu-button" type="button" data-menu-toggle aria-label="打开菜单"><Icon name="menu" /></button>
+  <div class="header-inner">
+    <a class="brand" href={link('/')} aria-label={`${site.name}主页`}>
+      <span class="brand-avatar">刘</span>
+      <span class="brand-name">{site.name}</span>
+    </a>
+    <nav class="desktop-nav" aria-label="主导航">
+      {navigation.map((item) => (
+        <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
+      ))}
+    </nav>
+    <div class="header-actions">
+      <a class="icon-button desktop-action" href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" /></a>
+      <button class="icon-button mobile-menu-button" type="button" data-menu-toggle aria-label="打开菜单"><Icon name="menu" /></button>
+    </div>
   </div>
   <div class="mobile-menu" data-mobile-menu>
     <div class="mobile-menu-top">
-      <span>Navigate</span>
+      <strong>导航</strong>
       <button class="icon-button" type="button" data-menu-close aria-label="关闭菜单"><Icon name="close" /></button>
     </div>
-    <nav aria-label="Mobile navigation">
-      {navigation.map((item, index) => (
-        <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>
-          <span>0{index + 1}</span>{item.label}
-        </a>
+    <nav aria-label="移动端导航">
+      {navigation.map((item) => (
+        <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
     </nav>
     <div class="mobile-menu-contact">
       <a href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a>
-      <a href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />topjames666</a>
+      <a href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />GitHub</a>
     </div>
   </div>
 </header>

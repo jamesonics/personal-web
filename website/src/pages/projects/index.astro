@@ -1,58 +1,41 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectListItem from '../../components/ProjectListItem.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import { projects } from '../../data/projects';
 
 const groups = [
   {
     title: 'AI Agent 与智能系统',
-    description: '围绕垂类智能体、多智能体协作和面向科研场景的 AI 产品。',
-    projects: projects.filter((project) => [
-      'turbomachinery-agent',
-      'deepagents-crawler',
-      'reviewgo',
-      'paper-finder',
-      'paper-reading-automation',
-    ].includes(project.slug)),
+    description: '垂类智能体、多智能体协作和科研工作流产品。',
+    projects: projects.filter((project) => ['turbomachinery-agent','deepagents-crawler','reviewgo','paper-finder','paper-reading-automation'].includes(project.slug)),
   },
   {
     title: '视觉、机械与产品创新',
-    description: '从计算机视觉到康复设备和城市轨道交通装备的跨学科实践。',
-    projects: projects.filter((project) => [
-      'rehab-risk-perception',
-      'rehab-walking-trainer',
-      'metro-tunnel-cleaner',
-    ].includes(project.slug)),
+    description: '计算机视觉、医疗康复设备和机械产品实践。',
+    projects: projects.filter((project) => ['rehab-risk-perception','rehab-walking-trainer','metro-tunnel-cleaner'].includes(project.slug)),
   },
 ];
 let projectIndex = 0;
 ---
-<BaseLayout title="Projects" description="刘子涵的 AI Agent、科研工具、计算机视觉与工程创新项目。">
-  <section class="projects-hero container">
-    <div>
-      <p class="page-label">项目经历</p>
-      <h1>从研究原型到<br/>可运行的系统</h1>
+<BaseLayout title="项目" description="刘子涵的 AI Agent、科研工具、计算机视觉与工程创新项目。">
+  <div class="main-column">
+    <section class="page-header">
+      <h1>项目经历</h1>
+      <p>共 {projects.length} 个项目，覆盖 AI Agent、科研工具、计算机视觉、医疗康复和机械产品方向。</p>
+    </section>
+    <div class="project-groups">
+      {groups.map((group) => (
+        <section class="project-group">
+          <SectionHeading title={group.title} description={group.description} />
+          <div class="project-card-grid">
+            {group.projects.map((project) => {
+              projectIndex += 1;
+              return <ProjectListItem project={project} number={String(projectIndex).padStart(2, '0')} />;
+            })}
+          </div>
+        </section>
+      ))}
     </div>
-    <div class="projects-intro">
-      <strong>共 {projects.length} 个项目</strong>
-      <p>这里完整展示我在 AI Agent、科研工具、计算机视觉、医疗康复和机械产品方向的实践。点击项目可以查看详细职责、方法和结果。</p>
-    </div>
-  </section>
-
-  <section class="projects-catalog container">
-    {groups.map((group) => (
-      <section class="project-group">
-        <header class="project-group-header">
-          <h2>{group.title}</h2>
-          <p>{group.description}</p>
-        </header>
-        <div class="project-list">
-          {group.projects.map((project) => {
-            projectIndex += 1;
-            return <ProjectListItem project={project} number={String(projectIndex).padStart(2, '0')} />;
-          })}
-        </div>
-      </section>
-    ))}
-  </section>
+  </div>
 </BaseLayout>

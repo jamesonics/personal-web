@@ -1,14 +1,14 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { site } from '../data/site';
-const { title, description, date, category, readingTime, tags = [] } = Astro.props;
+const { title, description, date, category, tags = [] } = Astro.props;
 const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
 ---
 <BaseLayout title={title} description={description}>
-  <article class="article-page container" data-pagefind-body>
-    <a class="back-link" href={`${site.base}/writing/`}>← Back to Writing</a>
+  <article class="article-page main-column" data-pagefind-body>
+    <a class="back-link" href={`${site.base}/writing/`}>← 返回文章列表</a>
     <header class="article-header">
-      <div class="article-kicker"><span>{category}</span><time>{formattedDate}</time><span>{readingTime}</span></div>
+      <div class="article-kicker"><span>{category}</span><time>{formattedDate}</time></div>
       <h1>{title}</h1>
       <p>{description}</p>
       <div class="article-tags">{tags.map((tag: string) => <span>{tag}</span>)}</div>

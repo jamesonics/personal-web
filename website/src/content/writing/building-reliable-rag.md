@@ -2,7 +2,7 @@
 title: 一个可靠 RAG 系统，不能只看“回答像不像”
 description: 我在专业文档 RAG 实践中，如何把文档、检索、引用和评测连接成可验证链路。
 date: 2026-07-24
-category: Agent Engineering
+category: 工程实践
 tags: [RAG, Evaluation, Retrieval]
 readingTime: 8 min read
 featured: true

@@ -3,31 +3,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { education } from '../data/profile';
 ---
-<BaseLayout title="Research" description="刘子涵关于垂类智能体、RAG 评测与人机协作的研究方向。">
-  <section class="page-hero container">
-    <p class="eyebrow reveal">Research</p>
-    <h1 class="reveal">面向专业场景的<br/><em>Agent 系统研究。</em></h1>
-    <p class="page-lead reveal">我的研究兴趣位于 AI Agent、知识增强与工程设计的交叉地带：让智能体理解领域知识、稳定调用工具并接受人的监督。</p>
-  </section>
-  <section class="section container">
-    <SectionHeading eyebrow="Research agenda / 01" title="三个正在持续推进的问题" />
-    <div class="agenda-grid">
-      <article class="agenda-card reveal"><span>01</span><h3>垂类智能体如何获得可信的领域知识？</h3><p>研究文档切分、检索、重排、引用与评测的完整链路，让结论可以追溯到原始证据。</p><ul><li>Domain RAG</li><li>Retrieval evaluation</li><li>Evidence grounding</li></ul></article>
-      <article class="agenda-card reveal"><span>02</span><h3>Agent 如何进入真实工程工具链？</h3><p>通过 MCP 与可复用工具接口连接计算、数据处理和设计服务，同时保持权限与执行边界。</p><ul><li>Tool orchestration</li><li>MCP protocol</li><li>Sandbox execution</li></ul></article>
-      <article class="agenda-card reveal"><span>03</span><h3>人应该在什么时候介入？</h3><p>让系统在不确定、不可逆或高成本节点请求确认，并保存可复现的中间状态。</p><ul><li>Human-in-the-loop</li><li>Failure localization</li><li>Reproducibility</li></ul></article>
-    </div>
-  </section>
-  <section class="research-timeline-section">
-    <div class="container research-timeline-grid">
-      <SectionHeading eyebrow="Path / 02" title="从机械系统到智能系统" description="工程训练让我更关注约束、验证与落地，而不仅是模型指标。" />
-      <div class="research-timeline">
-        {education.map((item) => <article class="reveal"><time>{item.period}</time><div><h3>{item.school}</h3><p>{item.degree}</p><small>{item.details}</small></div></article>)}
-        <article class="reveal"><time>Now</time><div><h3>Domain Agent Research</h3><p>叶轮机械智能设计、RAG 评测与科研工作流自动化</p><small>持续构建、评估并记录真实系统。</small></div></article>
+<BaseLayout title="研究" description="刘子涵关于垂类智能体、RAG 评测与人机协作的研究方向。">
+  <div class="main-column">
+    <section class="page-header"><h1>研究方向</h1><p>探索 AI Agent、知识增强与工程设计的交叉问题，让智能体在专业场景中可靠地理解知识、调用工具并与人协作。</p></section>
+    <section class="content-section">
+      <SectionHeading title="当前关注的问题" />
+      <div class="focus-grid">
+        <article class="focus-card reveal"><h3>如何获得可信的领域知识？</h3><p>研究文档切分、检索、重排、引用与评测，让回答可以追溯到原始证据。</p></article>
+        <article class="focus-card reveal"><h3>如何接入真实工程工具？</h3><p>通过 MCP 和标准工具接口连接计算、数据处理与设计服务。</p></article>
+        <article class="focus-card reveal"><h3>人应该在什么时候介入？</h3><p>在不确定、高成本和不可逆节点引入人工确认，保持系统可控。</p></article>
       </div>
-    </div>
-  </section>
-  <section class="section container methods-section">
-    <SectionHeading eyebrow="Methods / 03" title="研究方法" />
-    <div class="method-list"><span>01 · Trace the source</span><span>02 · Build the smallest useful system</span><span>03 · Evaluate failures, not only wins</span><span>04 · Keep human checkpoints</span><span>05 · Turn results into reusable artifacts</span></div>
-  </section>
+    </section>
+    <section class="content-section">
+      <SectionHeading title="学习与研究经历" />
+      <div class="simple-timeline">
+        {education.map((item) => <article class="reveal"><div><h3>{item.school}</h3><p>{item.degree}</p><span>{item.details}</span></div><time>{item.period}</time></article>)}
+        <article class="reveal"><div><h3>当前研究</h3><p>叶轮机械智能设计、RAG 评测与科研工作流自动化</p><span>持续构建、评估并记录真实系统。</span></div><time>至今</time></article>
+      </div>
+    </section>
+    <section class="content-section"><SectionHeading title="研究方法" /><div class="method-cards"><span>追溯原始证据</span><span>先构建最小可用闭环</span><span>重点分析失败案例</span><span>保留人工确认节点</span><span>沉淀可复用成果</span></div></section>
+  </div>
 </BaseLayout>

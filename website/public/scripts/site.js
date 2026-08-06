@@ -1,10 +1,8 @@
 (() => {
-  const root = document.documentElement;
   const header = document.querySelector('[data-header]');
   const menu = document.querySelector('[data-mobile-menu]');
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const menuClose = document.querySelector('[data-menu-close]');
-  const themeToggle = document.querySelector('[data-theme-toggle]');
 
   const setMenu = (open) => {
     if (!menu) return;
@@ -15,11 +13,6 @@
   menuClose?.addEventListener('click', () => setMenu(false));
   menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
 
-  themeToggle?.addEventListener('click', () => {
-    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    root.dataset.theme = next;
-    localStorage.setItem('theme', next);
-  });
 
   const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 16);
   onScroll();

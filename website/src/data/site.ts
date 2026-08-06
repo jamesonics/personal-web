@@ -1,7 +1,7 @@
 export const site = {
   name: '刘子涵',
   englishName: 'James Liu',
-  title: 'AI Agent Researcher & Builder',
+  title: 'AI Agent 研究与开发',
   affiliation: '西安交通大学 · 能源与动力工程学院',
   email: 'JamesL@stu.xjtu.edu.cn',
   github: 'https://github.com/topjames666',
@@ -11,12 +11,12 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects/' },
-  { label: 'Research', href: '/research/' },
-  { label: 'Writing', href: '/writing/' },
-  { label: 'About', href: '/about/' },
-  { label: 'CV', href: '/cv/' },
+  { label: '首页', href: '/' },
+  { label: '项目', href: '/projects/' },
+  { label: '研究', href: '/research/' },
+  { label: '文章', href: '/writing/' },
+  { label: '关于', href: '/about/' },
+  { label: '简历', href: '/cv/' },
 ] as const;
 
 export const stats = [

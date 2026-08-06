@@ -3,17 +3,19 @@ import Icon from './Icon.astro';
 import { site } from '../data/site';
 const year = new Date().getFullYear();
 ---
-<footer class="site-footer container">
-  <div>
-    <p class="eyebrow">Open to research conversations</p>
-    <h2>一起把复杂问题，做成可用的系统。</h2>
-  </div>
-  <div class="footer-links">
-    <a href={`mailto:${site.email}`}><Icon name="mail" />Email</a>
-    <a href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />GitHub</a>
-  </div>
-  <div class="footer-bottom">
-    <span>© {year} {site.name} · {site.englishName}</span>
-    <span>Built with Astro · Hosted on GitHub Pages</span>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <h2>欢迎交流研究、项目与合作机会</h2>
+      <p>如果你对 AI Agent、RAG 或工程智能化感兴趣，可以通过邮箱或 GitHub 联系我。</p>
+    </div>
+    <div class="footer-links">
+      <a class="button primary" href={`mailto:${site.email}`}><Icon name="mail" />发送邮件</a>
+      <a class="button secondary" href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />GitHub</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© {year} {site.name}</span>
+      <span>基于 Astro 构建</span>
+    </div>
   </div>
 </footer>

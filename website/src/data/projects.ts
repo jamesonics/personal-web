@@ -20,7 +20,7 @@ export const projects: Project[] = [
     title: '叶轮机械智能设计 Agent',
     englishTitle: 'Turbomachinery Design Agent',
     category: 'AI & Agents',
-    year: '2025.09 — Present',
+    year: '2025.09 — 至今',
     role: '独立开发者 · 硕士研究方向',
     summary: '将专业知识、工程工具和 Agent 规划能力组织成面向叶轮机械设计的智能工作台。',
     description:
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     title: 'ReviewGo 智能文献综述系统',
     englishTitle: 'AI Literature Review Workspace',
     category: 'Product Engineering',
-    year: '2025.12 — Present',
+    year: '2025.12 — 至今',
     role: '项目负责人 · 全栈开发',
     summary: '面向科研工作者的一站式论文理解与综述生成产品。',
     description:
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     title: 'DeepAgents 多智能体爬虫',
     englishTitle: 'Multi-Agent Web Research System',
     category: 'AI & Agents',
-    year: '2025.12 — Present',
+    year: '2025.12 — 至今',
     role: '独立开发者',
     summary: '用协调器和专业子 Agent 自动完成网站分析、采集、执行与数据清洗。',
     description:
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     title: '论文解析自动化工作流',
     englishTitle: 'Paper Reading Automation',
     category: 'Research Tools',
-    year: '2026.01 — Present',
+    year: '2026.01 — 至今',
     role: '独立开发者',
     summary: '从 PDF 扫描、多模态理解到飞书/Notion 沉淀的一体化研究工作流。',
     description:

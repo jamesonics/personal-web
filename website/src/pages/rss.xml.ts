@@ -5,7 +5,7 @@ import { site } from '../data/site';
 export async function GET(context: any) {
   const posts = await getCollection('writing', ({ data }) => !data.draft);
   return rss({
-    title: `${site.englishName} — Writing`,
+    title: `${site.englishName} — 文章`,
     description: site.description,
     site: context.site,
     items: posts.map((post) => ({

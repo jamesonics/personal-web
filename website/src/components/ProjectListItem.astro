@@ -4,21 +4,24 @@ import type { Project } from '../data/projects';
 import { site } from '../data/site';
 interface Props { project: Project; number?: string; }
 const { project, number } = Astro.props;
+const initials = project.englishTitle.split(' ').map((word) => word[0]).join('').slice(0, 3).toUpperCase();
 ---
-<a class="project-list-item" href={`${site.base}/projects/${project.slug}/`}>
-  {number && <span class="project-number">{number}</span>}
-  <div class="project-list-main">
-    <div class="project-list-heading">
-      <h3>{project.title}</h3>
-      <span>{project.year}</span>
+<a class="project-card" href={`${site.base}/projects/${project.slug}/`}>
+  <div class="project-cover">
+    <span>{number ?? initials}</span>
+    <strong>{initials}</strong>
+  </div>
+  <div class="project-card-content">
+    <div class="project-card-heading">
+      <div>
+        <h3>{project.title}</h3>
+        <time>{project.year}</time>
+      </div>
+      <Icon name="external" size={19} />
     </div>
     <p>{project.summary}</p>
-    <div class="project-list-tags">
-      {project.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
+    <div class="project-tags">
+      {project.tags.slice(0, 4).map((tag) => <span>{tag}</span>)}
     </div>
-  </div>
-  <div class="project-list-side">
-    <span>{project.role}</span>
-    <Icon name="arrow" size={22} />
   </div>
 </a>

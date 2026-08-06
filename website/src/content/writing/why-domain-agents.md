@@ -2,7 +2,7 @@
 title: 为什么我开始研究垂类智能体
 description: 从机械工程到 AI Agent，我更关心的不是“模型有多聪明”，而是它能否真正进入专业工作流。
 date: 2026-08-01
-category: Research Notes
+category: 研究笔记
 tags: [Domain Agent, Engineering, Research]
 readingTime: 6 min read
 featured: true
