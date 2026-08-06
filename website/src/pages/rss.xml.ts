@@ -1,0 +1,18 @@
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import { site } from '../data/site';
+
+export async function GET(context: any) {
+  const posts = await getCollection('writing', ({ data }) => !data.draft);
+  return rss({
+    title: `${site.englishName} — Writing`,
+    description: site.description,
+    site: context.site,
+    items: posts.map((post) => ({
+      title: post.data.title,
+      description: post.data.description,
+      pubDate: post.data.date,
+      link: `/writing/${post.id}/`,
+    })),
+  });
+}

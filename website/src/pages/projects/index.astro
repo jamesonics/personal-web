@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+const categories = ['All', ...new Set(projects.map((project) => project.category))];
+---
+<BaseLayout title="Projects" description="刘子涵的 AI Agent、科研工具、计算机视觉与工程创新项目。">
+  <section class="page-hero container">
+    <p class="eyebrow reveal">Projects</p>
+    <h1 class="reveal">把研究问题，做成<br/><em>可以运行的东西。</em></h1>
+    <p class="page-lead reveal">从垂类智能体与 RAG，到科研自动化和康复设备。每个项目都围绕一个真实问题展开。</p>
+  </section>
+  <section class="section container project-index">
+    <div class="filter-row reveal" data-filters>
+      {categories.map((category, index) => <button type="button" class:list={{ active: index === 0 }} data-filter={category}>{category}</button>)}
+    </div>
+    <div class="all-projects">
+      {projects.map((project) => <div data-category={project.category}><ProjectCard project={project} /></div>)}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const filterRoot = document.querySelector('[data-filters]');
+  filterRoot?.addEventListener('click', (event) => {
+    const target = event.target;
+    const button = target instanceof Element ? target.closest<HTMLButtonElement>('[data-filter]') : null;
+    if (!button) return;
+    filterRoot.querySelectorAll('button').forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+    const selected = button.dataset.filter;
+    document.querySelectorAll<HTMLElement>('[data-category]').forEach((card) => {
+      card.hidden = selected !== 'All' && card.dataset.category !== selected;
+    });
+  });
+</script>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { site } from '../data/site';
+---
+<BaseLayout title="About" description="关于刘子涵的研究路径、工程经历与篮球故事。">
+  <section class="about-hero container">
+    <div class="about-copy reveal"><p class="eyebrow">About</p><h1>从机械工程出发，<br/><em>走向智能系统。</em></h1><p>我关注技术如何进入真实专业场景：它需要理解知识、尊重约束、与人协作，并且能够被验证。</p></div>
+    <div class="about-photo reveal"><img src={`${site.base}/images/optimized/basketball-team.jpg`} alt="刘子涵与篮球队" /></div>
+  </section>
+  <section class="section container story-grid">
+    <SectionHeading eyebrow="My story / 01" title="工程训练，塑造了我做 AI 的方式" />
+    <div class="story-prose reveal"><p>本科阶段，我在过程装备、机械设计和产品创新项目中接受了系统工程训练。康复行走训练器让我第一次完整经历需求调研、团队管理、机械设计、企业沟通和竞赛交付。</p><p>接触计算机视觉和大模型之后，我开始思考：能否让 AI 不只是生成答案，而是成为专业工作的一部分？这条路径把我带到垂类智能体、RAG 和科研自动化。</p><p>现在，我在西安交通大学继续探索叶轮机械智能设计 Agent，并将自己构建研究工具的过程沉淀为可复用的系统与文章。</p></div>
+  </section>
+  <section class="photo-journal container">
+    <div class="photo-tall reveal"><img src={`${site.base}/images/optimized/basketball-training.jpg`} alt="篮球训练" loading="lazy" /></div>
+    <div class="photo-copy reveal"><p class="eyebrow">Basketball / 02</p><h2>长期主义，不只发生在实验室。</h2><p>从初中开始打球，曾任学院篮球队队长，并入选华东理工大学男篮阳光组。篮球让我理解：真正稳定的表现来自日复一日的训练、明确分工，以及在压力下仍然相信队友。</p><div class="basketball-honors"><span>学院杯亚军</span><span>机动杯冠军</span><span>体育节篮球亚军</span></div></div>
+    <div class="photo-wide reveal"><img src={`${site.base}/images/optimized/basketball-group.jpg`} alt="篮球队合影" loading="lazy" /></div>
+  </section>
+  <section class="section container values-section"><SectionHeading eyebrow="Values / 03" title="我重视的几件事" /><div class="values-grid"><article><span>01</span><h3>Evidence over impression</h3><p>结论要有证据，系统要能验证。</p></article><article><span>02</span><h3>Make it useful</h3><p>从最小可用闭环开始，而不是追求概念堆叠。</p></article><article><span>03</span><h3>Learn in public</h3><p>记录过程、失败与判断，让经验可以复用。</p></article><article><span>04</span><h3>Play as a team</h3><p>承担自己的角色，也让协作对象更容易成功。</p></article></div></section>
+</BaseLayout>

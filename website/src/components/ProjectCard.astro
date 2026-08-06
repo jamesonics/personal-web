@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import type { Project } from '../data/projects';
+import { site } from '../data/site';
+interface Props { project: Project; large?: boolean; }
+const { project, large = false } = Astro.props;
+---
+<a class:list={['project-card', `accent-${project.accent}`, { large }]} href={`${site.base}/projects/${project.slug}/`} data-tilt>
+  <div class="project-visual" aria-hidden="true">
+    <span class="visual-orbit orbit-one"></span>
+    <span class="visual-orbit orbit-two"></span>
+    <span class="visual-core"></span>
+    <span class="project-index">{project.englishTitle}</span>
+  </div>
+  <div class="project-card-body">
+    <div class="project-meta"><span>{project.category}</span><span>{project.year}</span></div>
+    <h3>{project.title}</h3>
+    <p>{project.summary}</p>
+    <div class="project-tags">{project.tags.slice(0, 4).map((tag) => <span>{tag}</span>)}</div>
+    <div class="card-link">View case study <Icon name="arrow" size={18} /></div>
+  </div>
+</a>

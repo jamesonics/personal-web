@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer container">
+  <div>
+    <p class="eyebrow">Open to research conversations</p>
+    <h2>一起把复杂问题，做成可用的系统。</h2>
+  </div>
+  <div class="footer-links">
+    <a href={`mailto:${site.email}`}><Icon name="mail" />Email</a>
+    <a href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />GitHub</a>
+  </div>
+  <div class="footer-bottom">
+    <span>© {year} {site.name} · {site.englishName}</span>
+    <span>Built with Astro · Hosted on GitHub Pages</span>
+  </div>
+</footer>
