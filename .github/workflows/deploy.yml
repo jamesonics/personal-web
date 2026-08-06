@@ -1,4 +1,4 @@
-name: Deploy Astro site to Pages
+name: Build and publish gh-pages
 
 on:
   push:
@@ -6,22 +6,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: gh-pages-publish
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: website
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -34,24 +29,26 @@ jobs:
           node-version: '22.16.0'
           cache: pnpm
           cache-dependency-path: website/pnpm-lock.yaml
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
       - name: Install dependencies
+        working-directory: website
         run: pnpm install --frozen-lockfile
       - name: Build site
+        working-directory: website
         run: pnpm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: website/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Prepare static branch
+        run: |
+          touch website/dist/.nojekyll
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages || true
+          git worktree add --detach /tmp/gh-pages origin/gh-pages
+          find /tmp/gh-pages -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -R website/dist/. /tmp/gh-pages/
+          cd /tmp/gh-pages
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No deployment changes."
+          else
+            git commit -m "deploy: ${GITHUB_SHA}"
+            git push origin HEAD:gh-pages
+          fi
