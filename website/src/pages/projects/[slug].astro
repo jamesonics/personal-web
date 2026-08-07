@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import TurbomachineryCaseStudy from '../../components/TurbomachineryCaseStudy.astro';
 import { projects } from '../../data/projects';
 import { site } from '../../data/site';
 export function getStaticPaths() { return projects.map((project) => ({ params: { slug: project.slug }, props: { project } })); }
 const { project } = Astro.props;
 ---
+{project.slug === 'turbomachinery-agent' ? <TurbomachineryCaseStudy project={project} /> : (
 <BaseLayout title={project.title} description={project.summary}>
   <article class="project-detail main-column" data-pagefind-body>
     <a class="back-link" href={`${site.base}/projects/`}>← 返回项目列表</a>
@@ -34,3 +36,5 @@ const { project } = Astro.props;
     </section>
   </article>
 </BaseLayout>
+
+)}
