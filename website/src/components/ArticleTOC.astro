@@ -1,0 +1,114 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  mode: 'desktop' | 'mobile';
+}
+
+const { headings, mode } = Astro.props;
+const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 4);
+---
+{tocHeadings.length > 0 && mode === 'desktop' && (
+  <aside class="article-toc article-toc-desktop" aria-label="文章目录">
+    <nav>
+      <h2>文章目录</h2>
+      <ol>
+        {tocHeadings.map((heading) => (
+          <li class={`toc-depth-${heading.depth}`}>
+            <a class="toc-link" href={`#${heading.slug}`} data-heading-id={heading.slug}>{heading.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </aside>
+)}
+{tocHeadings.length > 0 && mode === 'mobile' && (
+  <details class="article-toc article-toc-mobile">
+    <summary><span>文章目录</span><span class="toc-count">{tocHeadings.length} 个章节</span></summary>
+    <nav aria-label="文章目录">
+      <ol>
+        {tocHeadings.map((heading) => (
+          <li class={`toc-depth-${heading.depth}`}>
+            <a class="toc-link" href={`#${heading.slug}`} data-heading-id={heading.slug}>{heading.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </details>
+)}
+
+<script>
+  const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.toc-link'));
+  const headingIds = [...new Set(tocLinks.map((link) => link.dataset.headingId).filter(Boolean))] as string[];
+  const articleHeadings = headingIds
+    .map((id) => document.getElementById(id))
+    .filter((heading): heading is HTMLElement => Boolean(heading));
+
+  const setActiveHeading = (id: string) => {
+    tocLinks.forEach((link) => {
+      const isActive = link.dataset.headingId === id;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  let ticking = false;
+  const updateActiveHeading = () => {
+    ticking = false;
+    if (articleHeadings.length === 0) return;
+    const reachedBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 24;
+    let current = reachedBottom ? articleHeadings.at(-1)! : articleHeadings[0];
+    if (!reachedBottom) {
+      for (const heading of articleHeadings) {
+        if (heading.getBoundingClientRect().top <= 150) current = heading;
+        else break;
+      }
+    }
+    setActiveHeading(current.id);
+  };
+
+  if (articleHeadings.length > 0) {
+    updateActiveHeading();
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActiveHeading);
+      }
+    }, { passive: true });
+    window.addEventListener('hashchange', updateActiveHeading);
+  }
+
+  tocLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const id = link.dataset.headingId;
+      const target = id ? document.getElementById(id) : null;
+      const mobileToc = link.closest<HTMLDetailsElement>('.article-toc-mobile');
+      if (target && id) {
+        event.preventDefault();
+        history.pushState(null, '', `#${encodeURIComponent(id)}`);
+        if (mobileToc) {
+          mobileToc.open = false;
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              setActiveHeading(id);
+            });
+          });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setActiveHeading(id);
+        }
+      } else if (mobileToc) {
+        mobileToc.open = false;
+      }
+    });
+  });
+
+  if (location.hash) {
+    const initialId = decodeURIComponent(location.hash.slice(1));
+    const initialHeading = document.getElementById(initialId);
+    if (initialHeading) requestAnimationFrame(() => initialHeading.scrollIntoView({ block: 'start' }));
+  }
+</script>
