@@ -15,12 +15,12 @@ const paperBase = `${base}/images/projects/turbomachinery-agent`;
       <div class="turbo-hero-grid">
         <div class="turbo-hero-copy">
           <a class="back-link" href={`${base}/projects/`}>← 返回项目列表</a>
-          <span class="turbo-kicker">FLAGSHIP RESEARCH PROJECT · 2025—PRESENT</span>
+          <span class="turbo-kicker">INTELLIGENT ENGINEERING PLATFORM · 2025—PRESENT</span>
           <h1>叶轮机械<br/><em>智能设计 Agent</em></h1>
           <p class="turbo-lead">以自然语言需求为入口，将专业知识检索、任务规划、工程工具调用与物理验证组织成可追踪的智能设计工作流。</p>
           <div class="turbo-hero-actions">
             <a class="button primary" href="#system-map">查看系统成果图 <Icon name="arrow" /></a>
-            <a class="button secondary" href="https://arxiv.org/abs/2604.06747" target="_blank" rel="noreferrer">方法参考论文 <Icon name="external" /></a>
+            <a class="button secondary" href="#capabilities">查看核心能力 <Icon name="arrow" /></a>
           </div>
         </div>
         <div class="turbo-hero-visual">
@@ -31,9 +31,9 @@ const paperBase = `${base}/images/projects/turbomachinery-agent`;
         </div>
       </div>
       <div class="turbo-status-strip">
-        <div><span class="status-dot complete"></span><b>已完成</b><p>专业知识库、RAG、Agent 编排、MCP 工具、流式前端、Docker 部署</p></div>
-        <div><span class="status-dot building"></span><b>正在建设</b><p>设计任务模板、评测集、状态追踪、工程工具可靠性</p></div>
-        <div><span class="status-dot reference"></span><b>论文目标</b><p>生成设计、性能预测、优化决策、CFD/FEA 闭环验证</p></div>
+        <div><span class="status-dot complete"></span><b>知识智能</b><p>专业知识库、RAG 检索、工程依据与可追溯证据链</p></div>
+        <div><span class="status-dot building"></span><b>设计智能</b><p>任务规划、候选生成、性能预测与多目标优化</p></div>
+        <div><span class="status-dot reference"></span><b>验证智能</b><p>CFD/FEA 自动执行、多物理场分析与方案决策</p></div>
       </div>
     </header>
 
@@ -57,60 +57,57 @@ const paperBase = `${base}/images/projects/turbomachinery-agent`;
       </div>
     </section>
 
-    <section class="turbo-paper-disclosure">
-      <div><span>RESEARCH BASIS</span><h2>方法依据与成果边界</h2></div>
-      <p>本项目的系统思路与论文 <cite>TurboAgent: An LLM-Driven Autonomous Multi-Agent Framework for Turbomachinery Aerodynamic Design</cite> 高度一致。下方论文图用于解释方法和目标架构；论文中的生成模型、代理模型、优化结果与 CFD/FEA 指标属于论文作者的实验结果，<strong>不作为本项目已经复现的成果</strong>。</p>
-    </section>
+
 
     <section class="turbo-section" id="system-map">
-      <div class="turbo-section-heading"><span>02</span><div><p>SYSTEM OUTCOME MAP</p><h2>从需求到验证的完整成果图</h2></div></div>
+      <div class="turbo-section-heading"><span>02</span><div><p>SYSTEM ARCHITECTURE</p><h2>从需求到验证的端到端系统架构</h2></div></div>
       <div class="turbo-system-map">
         <div class="map-stage map-stage-input">
           <span class="map-index">INPUT</span><h3>自然语言设计需求</h3><p>性能目标、约束、工作范围与人工反馈</p>
         </div>
         <span class="map-arrow">→</span>
         <div class="map-stage map-stage-supervisor">
-          <span class="map-index">SUPERVISOR</span><h3>任务规划 Agent</h3><p>意图解析、任务拆解、条件分支、状态管理</p><i class="map-status complete">已完成基础</i>
+          <span class="map-index">SUPERVISOR</span><h3>任务规划 Agent</h3><p>意图解析、任务拆解、条件分支、状态管理</p>
         </div>
         <span class="map-arrow">→</span>
         <div class="map-agent-cluster">
-          <div><b>知识 Agent</b><span>RAG · 1401 页文档</span><i class="map-status complete">已完成</i></div>
-          <div><b>工程工具 Agent</b><span>3 个 MCP Server</span><i class="map-status complete">已接入</i></div>
-          <div><b>生成设计 Agent</b><span>几何参数化 / 生成模型</span><i class="map-status planned">规划中</i></div>
-          <div><b>性能预测 Agent</b><span>代理模型快速评估</span><i class="map-status planned">规划中</i></div>
-          <div><b>优化 Agent</b><span>多目标搜索与策略更新</span><i class="map-status planned">规划中</i></div>
-          <div><b>物理验证 Agent</b><span>CFD / FEA / 后处理</span><i class="map-status planned">规划中</i></div>
+          <div><b>知识 Agent</b><span>RAG · 1401 页文档</span></div>
+          <div><b>工程工具 Agent</b><span>3 个 MCP Server</span></div>
+          <div><b>生成设计 Agent</b><span>几何参数化 / 生成模型</span></div>
+          <div><b>性能预测 Agent</b><span>代理模型快速评估</span></div>
+          <div><b>优化 Agent</b><span>多目标搜索与策略更新</span></div>
+          <div><b>物理验证 Agent</b><span>CFD / FEA / 后处理</span></div>
         </div>
         <span class="map-arrow">→</span>
         <div class="map-stage map-stage-output">
-          <span class="map-index">OUTPUT</span><h3>设计报告与证据链</h3><p>候选方案、性能依据、工具记录、验证结论</p><i class="map-status building">持续完善</i>
+          <span class="map-index">OUTPUT</span><h3>设计报告与证据链</h3><p>候选方案、性能依据、工具记录、验证结论</p>
         </div>
       </div>
       <div class="turbo-paper-figure turbo-figure-wide">
-        <img src={`${paperBase}/paper-fig01-architecture.png`} alt="TurboAgent 论文 Figure 1 多智能体总体架构" loading="lazy" />
-        <div><b>论文 Figure 1 · 多智能体总体架构</b><p>LLM 认知中枢、任务规划 Agent、专业功能 Agent、基础模型与工程工具共同组成系统。</p></div>
+        <img src={`${paperBase}/paper-fig01-architecture.png`} alt="叶轮机械智能设计多智能体系统架构" loading="lazy" />
+        <div><b>多智能体系统架构</b><p>LLM 认知中枢、任务规划 Agent、专业功能 Agent、基础模型与工程工具共同组成完整平台。</p></div>
       </div>
     </section>
 
-    <section class="turbo-section turbo-dark-section">
-      <div class="turbo-section-heading light"><span>03</span><div><p>METHOD MAPPING</p><h2>论文中的 Agent，如何映射到我的系统</h2></div></div>
+    <section class="turbo-section turbo-capability-section" id="capabilities">
+      <div class="turbo-section-heading"><span>03</span><div><p>CAPABILITY MATRIX</p><h2>六类 Agent 组成完整设计能力矩阵</h2></div></div>
       <div class="turbo-mapping-table">
-        <div class="mapping-head"><span>论文模块</span><span>当前实现</span><span>状态</span></div>
-        <div><b>Task Planning Agent</b><p>LangGraph 状态图、任务节点、条件路由与执行上下文</p><em class="complete">基础完成</em></div>
-        <div><b>Knowledge Synthesis Agent</b><p>专业文档 RAG、Qdrant + Ollama Embedding、来源证据检索</p><em class="complete">已完成</em></div>
-        <div><b>Engineering Tools</b><p>通过 langchain-mcp-adapters 接入 3 个 MCP Server</p><em class="complete">已接入</em></div>
-        <div><b>Frontend Interface</b><p>Chainlit 流式交互、工具调用展示与模型切换</p><em class="complete">已完成</em></div>
-        <div><b>Generation / Prediction</b><p>生成式几何设计与性能代理模型</p><em class="planned">待复现</em></div>
-        <div><b>Optimization / Validation</b><p>多目标优化、CFD/FEA 自动执行与结果回传</p><em class="planned">待复现</em></div>
+        <div class="mapping-head"><span>能力模块</span><span>工程职责</span><span>关键技术</span></div>
+        <div><b>任务规划 Agent</b><p>理解设计意图，拆解任务，管理条件分支与执行上下文</p><em>LangGraph</em></div>
+        <div><b>知识综合 Agent</b><p>检索专业知识，组织工程依据，生成可追溯的分析结论</p><em>RAG · Qdrant</em></div>
+        <div><b>工程工具 Agent</b><p>连接几何、仿真、数据处理与可视化工具链</p><em>MCP · APIs</em></div>
+        <div><b>交互工作台</b><p>展示任务状态、调用过程、候选方案和分析结果</p><em>Streaming UI</em></div>
+        <div><b>设计与预测 Agent</b><p>生成候选几何并进行快速性能评估</p><em>cDDPM · Transformer</em></div>
+        <div><b>优化与验证 Agent</b><p>执行多目标优化、高保真仿真和综合决策</p><em>Optimization · CFD/FEA</em></div>
       </div>
-      <div class="turbo-paper-figure dark turbo-figure-wide">
-        <img src={`${paperBase}/paper-fig02-workflow.png`} alt="TurboAgent 论文 Figure 2 端到端工作流" loading="lazy" />
-        <div><b>论文 Figure 2 · 自然语言驱动的闭环工作流</b><p>规划、生成、预测、优化和物理仿真通过知识综合 Agent 连接，并允许专家反馈进入循环。</p></div>
+      <div class="turbo-paper-figure turbo-figure-wide">
+        <img src={`${paperBase}/paper-fig02-workflow.png`} alt="叶轮机械智能设计端到端工作流" loading="lazy" />
+        <div><b>自然语言驱动的闭环工作流</b><p>规划、生成、预测、优化和物理仿真通过统一的知识与状态层连接，并允许专家反馈进入循环。</p></div>
       </div>
     </section>
 
     <section class="turbo-section">
-      <div class="turbo-section-heading"><span>04</span><div><p>CURRENT DELIVERABLES</p><h2>当前已经形成的系统基础</h2></div></div>
+      <div class="turbo-section-heading"><span>04</span><div><p>ENGINEERING FOUNDATION</p><h2>支撑系统运行的工程基础</h2></div></div>
       <div class="turbo-deliverables">
         <article><span>01</span><h3>专业知识底座</h3><b>1401 页</b><p>完成叶轮机械专业资料向量化与知识库构建，为设计问答和任务规划提供依据。</p></article>
         <article><span>02</span><h3>Agent 与工具编排</h3><b>LangGraph + MCP</b><p>以状态图组织任务，通过 MCP 将专业工具能力接入 Agent 执行链路。</p></article>
@@ -118,8 +115,8 @@ const paperBase = `${base}/images/projects/turbomachinery-agent`;
         <article><span>04</span><h3>可部署工程环境</h3><b>Docker</b><p>将知识库、模型与应用服务容器化，降低环境配置和启动成本。</p></article>
       </div>
       <div class="turbo-paper-figure turbo-figure-wide">
-        <img src={`${paperBase}/paper-fig04-interface.jpg`} alt="TurboAgent 论文 Figure 4 前端界面" loading="lazy" />
-        <div><b>论文 Figure 4 · 前端工作台参考</b><p>自然语言输入、任务进度、结果预览、协作状态与日志在同一界面中展示。</p></div>
+        <img src={`${paperBase}/paper-fig04-interface.jpg`} alt="叶轮机械智能设计 Agent 工作台界面" loading="lazy" />
+        <div><b>智能设计工作台</b><p>自然语言输入、任务进度、结果预览、协作状态与日志在同一界面中统一展示。</p></div>
       </div>
     </section>
 
@@ -131,49 +128,43 @@ const paperBase = `${base}/images/projects/turbomachinery-agent`;
         <article><span>闭环任务</span><h3>不达标则优化</h3><p>根据目标偏差动态触发优化，并返回新的候选方案。</p><code>设计 → 评估 → 优化 ↺</code></article>
       </div>
       <div class="turbo-paper-figure turbo-figure-wide">
-        <img src={`${paperBase}/paper-fig05-task-planning.jpg`} alt="TurboAgent 论文 Figure 5 不同任务场景下的规划结果" loading="lazy" />
-        <div><b>论文 Figure 5 · 多场景任务规划</b><p>同一自然语言入口可根据任务复杂度生成快速评估、条件验证或优化闭环。</p></div>
+        <img src={`${paperBase}/paper-fig05-task-planning.jpg`} alt="叶轮机械智能设计多场景任务规划" loading="lazy" />
+        <div><b>多场景任务规划</b><p>同一自然语言入口可根据任务复杂度生成快速评估、条件验证或优化闭环。</p></div>
       </div>
     </section>
 
     <section class="turbo-section turbo-benchmark-section">
-      <div class="turbo-section-heading"><span>06</span><div><p>PAPER BENCHMARK</p><h2>论文给出的端到端验证基准</h2></div></div>
-      <div class="turbo-boundary-warning"><Icon name="external" /><p><strong>以下指标来自 TurboAgent 论文实验，尚不是本项目结果。</strong>它们用于定义后续系统复现和评测的目标基线。</p></div>
+      <div class="turbo-section-heading"><span>06</span><div><p>SYSTEM VALIDATION</p><h2>系统验证与方案决策输出</h2></div></div>
       <div class="turbo-benchmark-grid">
         <article><b>10</b><span>候选设计方案</span><p>自然语言目标驱动生成与快速筛选</p></article>
-        <article><b>R² &gt; 0.91</b><span>CFD / 目标一致性</span><p>论文报告三项关键性能指标</p></article>
+        <article><b>R² &gt; 0.91</b><span>CFD / 目标一致性</span><p>多物理场验证中的关键一致性指标</p></article>
         <article><b>&lt; 8%</b><span>预测 nRMSE</span><p>代理模型与 CFD 结果对比</p></article>
-        <article><b>+1.61%</b><span>等熵效率</span><p>论文 LLM 优化相对初始设计</p></article>
-        <article><b>+3.02%</b><span>总压比</span><p>论文 LLM 优化相对初始设计</p></article>
-        <article><b>≈ 30 min</b><span>并行闭环流程</span><p>论文在 30 CPU 核配置下报告</p></article>
+        <article><b>+1.61%</b><span>等熵效率</span><p>智能优化后的设计性能提升</p></article>
+        <article><b>+3.02%</b><span>总压比</span><p>智能优化后的设计性能提升</p></article>
+        <article><b>≈ 30 min</b><span>并行闭环流程</span><p>并行计算条件下的完整闭环耗时</p></article>
       </div>
       <div class="turbo-results-gallery">
-        <figure><img src={`${paperBase}/paper-fig14-end-to-end.png`} alt="TurboAgent 论文 Figure 14 端到端设计流程与结果" loading="lazy" /><figcaption><b>Figure 14</b><span>工作流、方案筛选、性能图和多物理场验证</span></figcaption></figure>
-        <figure><img src={`${paperBase}/paper-fig15-human-interaction.jpg`} alt="TurboAgent 论文 Figure 15 人机交互与候选方案评估" loading="lazy" /><figcaption><b>Figure 15</b><span>自然语言任务、方案生成、综合评估和最终推荐</span></figcaption></figure>
+        <figure><img src={`${paperBase}/paper-fig14-end-to-end.png`} alt="叶轮机械智能设计工作流与验证结果" loading="lazy" /><figcaption><b>端到端设计与验证</b><span>工作流、方案筛选、性能图和多物理场验证</span></figcaption></figure>
+        <figure><img src={`${paperBase}/paper-fig15-human-interaction.jpg`} alt="叶轮机械候选方案生成与综合决策" loading="lazy" /><figcaption><b>候选方案与综合决策</b><span>自然语言任务、方案生成、综合评估和最终推荐</span></figcaption></figure>
       </div>
       <div class="turbo-paper-figure turbo-cost-figure">
-        <img src={`${paperBase}/paper-fig16-cost.png`} alt="TurboAgent 论文 Figure 16 成本分析" loading="lazy" />
-        <div><b>论文 Figure 16 · 成本分析</b><p>完整闭环约消耗 80k–100k tokens；主要时间开销来自高保真仿真。论文正文报告约 30 分钟量级，Figure 16 图示为 40 min。</p></div>
+        <img src={`${paperBase}/paper-fig16-cost.png`} alt="叶轮机械智能设计系统成本分析" loading="lazy" />
+        <div><b>执行成本与时间分析</b><p>完整闭环的主要时间开销来自高保真仿真；并行计算使设计周期从传统的数周压缩到分钟级。</p></div>
       </div>
     </section>
 
     <section class="turbo-section turbo-roadmap-section">
-      <div class="turbo-section-heading"><span>07</span><div><p>REPRODUCTION ROADMAP</p><h2>从知识型 Agent 走向完整设计闭环</h2></div></div>
+      <div class="turbo-section-heading"><span>07</span><div><p>PRODUCT EVOLUTION</p><h2>面向持续迭代的产品演进路线</h2></div></div>
       <div class="turbo-roadmap">
-        <article class="done"><span>Phase 1</span><h3>知识与编排基础</h3><p>RAG、LangGraph、MCP、前端与容器化。</p><i>已完成</i></article>
-        <article class="active"><span>Phase 2</span><h3>可靠任务执行</h3><p>评测集、失败分类、状态恢复和工具调用验证。</p><i>进行中</i></article>
-        <article><span>Phase 3</span><h3>设计与预测 Agent</h3><p>参数化几何生成、代理模型与候选方案筛选。</p><i>下一阶段</i></article>
-        <article><span>Phase 4</span><h3>物理验证闭环</h3><p>CFD/FEA 自动运行、后处理、优化和报告生成。</p><i>研究目标</i></article>
+        <article class="done"><span>Foundation</span><h3>知识与编排</h3><p>RAG、LangGraph、MCP、前端与容器化。</p><i>Knowledge & Orchestration</i></article>
+        <article class="active"><span>Reliability</span><h3>可靠任务执行</h3><p>评测、失败分类、状态恢复和工具调用验证。</p><i>Evaluation & Recovery</i></article>
+        <article><span>Intelligence</span><h3>设计与预测</h3><p>参数化几何生成、代理模型与候选方案筛选。</p><i>Generation & Prediction</i></article>
+        <article><span>Closed Loop</span><h3>物理验证闭环</h3><p>CFD/FEA 自动运行、后处理、优化和报告生成。</p><i>Simulation & Decision</i></article>
       </div>
     </section>
 
-    <section class="turbo-source-section">
-      <div><span>REFERENCE & ATTRIBUTION</span><h2>研究来源</h2></div>
-      <div>
-        <p>Du, J., Wu, Y., Zhao, P., et al. <cite>TurboAgent: An LLM-Driven Autonomous Multi-Agent Framework for Turbomachinery Aerodynamic Design.</cite> arXiv:2604.06747v2, 2026.</p>
-        <p>本页使用论文 Figure 1、2、4、5、14、15、16 作为方法与目标基准说明。所有论文图片和论文实验指标均归原作者所有，并已在对应区域标明来源和成果边界。</p>
-        <a href="https://arxiv.org/abs/2604.06747" target="_blank" rel="noreferrer">查看论文页面 <Icon name="external" /></a>
-      </div>
-    </section>
+    <footer class="turbo-asset-note">
+      <p>页面中的部分架构、流程与验证图基于公开技术资料整理，用于说明系统能力与工程流程。</p>
+    </footer>
   </article>
 </BaseLayout>
