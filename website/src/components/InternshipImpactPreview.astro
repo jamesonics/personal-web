@@ -1,0 +1,108 @@
+---
+const metrics = [
+  {
+    value: '-38%',
+    label: 'Agent 接入周期',
+    note: '示例：原子能力复用后减少定制适配',
+  },
+  {
+    value: '96.4%',
+    label: '评测运行成功率',
+    note: '示例：统一 Runtime 链路后的稳定性',
+  },
+  {
+    value: '72%',
+    label: '横评任务覆盖率',
+    note: '示例：可进入统一评测流程的任务占比',
+  },
+] as const;
+
+const workstreamShare = [
+  { label: 'Harness 建设', value: 28 },
+  { label: 'Runtime 改造', value: 34 },
+  { label: '质量治理', value: 22 },
+  { label: '探索沉淀', value: 16 },
+] as const;
+---
+<section class="internship-impact-preview reveal" aria-labelledby="impact-preview-title">
+  <header class="impact-preview-header">
+    <div>
+      <p><span>Mock 数据</span>视觉方案预览</p>
+      <h2 id="impact-preview-title">把阶段产出转换为一眼可读的结果看板</h2>
+      <p class="impact-preview-description">以下数字仅用于确认图表、层级和阅读体验，不代表真实实习结果。后续会用经过验证的数据替换。</p>
+    </div>
+    <div class="impact-preview-disclaimer"><i></i>示意数据</div>
+  </header>
+
+  <div class="impact-metric-grid">
+    {metrics.map((metric) => (
+      <article>
+        <strong>{metric.value}</strong>
+        <h3>{metric.label}</h3>
+        <p>{metric.note}</p>
+      </article>
+    ))}
+  </div>
+
+  <div class="impact-visual-grid">
+    <figure class="impact-chart-card impact-bar-chart">
+      <figcaption>
+        <div><strong>工作价值构成</strong><span>四条工作线的示意占比</span></div>
+        <em>Mock</em>
+      </figcaption>
+      <div class="impact-bars">
+        {workstreamShare.map((item) => (
+          <div class="impact-bar-row">
+            <span>{item.label}</span>
+            <div><i style={`--bar-value:${item.value}%`}></i></div>
+            <strong>{item.value}%</strong>
+          </div>
+        ))}
+      </div>
+    </figure>
+
+    <figure class="impact-chart-card impact-trend-chart">
+      <figcaption>
+        <div><strong>评测链路稳定性</strong><span>示意：版本迭代后的趋势变化</span></div>
+        <em>Mock</em>
+      </figcaption>
+      <svg viewBox="0 0 560 230" role="img" aria-label="示意的评测链路稳定性上升折线图">
+        <title>评测链路稳定性趋势示意</title>
+        <desc>从第一个版本到第五个版本，示意成功率逐步从百分之八十二提升至百分之九十六点四。</desc>
+        <g class="impact-grid-lines">
+          <line x1="42" y1="36" x2="530" y2="36"></line>
+          <line x1="42" y1="86" x2="530" y2="86"></line>
+          <line x1="42" y1="136" x2="530" y2="136"></line>
+          <line x1="42" y1="186" x2="530" y2="186"></line>
+        </g>
+        <path class="impact-area" d="M48 172 L165 139 L282 116 L399 77 L522 48 L522 190 L48 190 Z"></path>
+        <polyline class="impact-line" points="48,172 165,139 282,116 399,77 522,48"></polyline>
+        <g class="impact-points">
+          <circle cx="48" cy="172" r="5"></circle>
+          <circle cx="165" cy="139" r="5"></circle>
+          <circle cx="282" cy="116" r="5"></circle>
+          <circle cx="399" cy="77" r="5"></circle>
+          <circle cx="522" cy="48" r="6"></circle>
+        </g>
+        <g class="impact-axis-labels">
+          <text x="42" y="218">V1</text>
+          <text x="158" y="218">V2</text>
+          <text x="275" y="218">V3</text>
+          <text x="392" y="218">V4</text>
+          <text x="509" y="218">V5</text>
+          <text x="486" y="35">96.4%</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+
+  <div class="impact-flow" aria-label="Agent 研发与评测价值链路示意">
+    <div><span>01</span><strong>Agent Harness</strong><small>稳定执行真实任务</small></div>
+    <b aria-hidden="true">→</b>
+    <div><span>02</span><strong>Evaluation Runtime</strong><small>统一能力接入</small></div>
+    <b aria-hidden="true">→</b>
+    <div><span>03</span><strong>横向评测</strong><small>形成可比结果</small></div>
+    <b aria-hidden="true">→</b>
+    <div><span>04</span><strong>反馈闭环</strong><small>支持 Agent 迭代</small></div>
+  </div>
+</section>

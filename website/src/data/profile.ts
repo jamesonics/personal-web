@@ -17,6 +17,7 @@ export const education = [
 
 export const experience = [
   {
+    slug: 'fornax',
     organization: '字节跳动 · Fornax',
     role: 'Agent Infra 实习生 · Harness 与 Agent 评测方向',
     period: '2026.06 — 至今',
@@ -28,10 +29,11 @@ export const experience = [
     bullets: [
       '参与团队 Agent Harness 建设，围绕真实任务执行、工具与环境适配、调试和可观测链路持续沉淀通用能力。',
       '推进评测 Runtime 链路改造与平台能力原子化，面向降低不同 Agent 接入统一横评流程时的定制成本，提升评测的一致性与可扩展性。',
-      '承担 On-call 与缺陷修复，定位并修复平台部分水平越权风险，补齐资源级权限校验与回归验证，降低平台安全与稳定性风险。',
+      '参与平台 On-call 与缺陷治理，完善资源访问校验、异常处理与回归验证，降低稳定性和权限边界风险。',
     ],
   },
   {
+    slug: 'gpdi',
     organization: '广东省电信规划设计院（长沙分院）',
     role: '集客线条业务实习生',
     period: '2022',
@@ -52,108 +54,79 @@ export const fornaxInternshipDetails = {
   expectedEnd: '预计持续至 2026.09',
   positioning:
     '以价值为取向、结果为导向，在 Agent 研发与评测链路中寻找影响团队效率、能力覆盖和结果可信度的关键瓶颈。',
-  methodology: [
-    {
-      index: '01',
-      title: '价值取向',
-      description: '先判断问题对 Agent 能力、团队效率或业务交付的真实影响。',
-    },
-    {
-      index: '02',
-      title: '结果导向',
-      description: '不把功能完成等同于成果，持续追踪能力是否落地、采用和复用。',
-    },
-    {
-      index: '03',
-      title: '指标目标',
-      description: '围绕成功率、覆盖率、接入周期、稳定性与风险等指标验证结果。',
-    },
-    {
-      index: '04',
-      title: '因果索引',
-      description: '记录目标、瓶颈、关键行动、作用机制、指标变化与归因证据。',
-    },
-  ],
   workstreams: [
     {
-      index: '01',
       title: '团队 Harness 建设',
-      englishTitle: 'Agent Harness',
-      status: '持续建设',
-      tone: 'orange',
       description:
-        '参与团队 Agent Harness 建设。当前先建立统一成果框架，后续将按具体项目补齐任务背景、技术机制、实测结果和团队影响。',
-      valuePath:
-        '完善执行与调试基础设施 → 让 Agent 更稳定地完成真实任务 → 缩短研发定位与迭代链路',
-      metrics: ['任务成功率', '工具调用成功率', '接入与调试时长', '轨迹完整率'],
+        '围绕真实任务执行、工具与环境适配、调试和可观测能力，参与团队 Agent Harness 的持续建设。',
+      value: '让 Agent 更稳定地完成真实任务，降低问题定位与迭代成本。',
+      contribution: '参与梳理真实任务执行所需的通用能力，并持续补齐工具、环境、调试与可观测链路。',
+      evidence: '具体项目、能力覆盖范围与效果指标将在后续获得可公开证据后逐项补充。',
     },
     {
-      index: '02',
       title: '评测 Runtime 链路改造',
-      englishTitle: 'Evaluation Runtime',
-      status: '核心工作线',
-      tone: 'blue',
       description:
-        '改造平台评测 Runtime 链路，面向不同 Agent 的统一接入和横向评测；推动平台能力原子化，减少 Agent-specific 的重复适配。',
-      valuePath:
-        '统一链路与原子能力 → 异构 Agent 可横向比较 → 评测结果更一致可比 → 加快 Agent 选型与迭代',
-      metrics: ['新 Agent 接入周期', '定制适配量', 'Runtime 成功率', '可评测任务覆盖率'],
+        '推进评测 Runtime 链路改造和能力原子化，支持不同 Agent 以更统一的方式接入横向评测。',
+      value: '减少重复适配，提高评测的一致性、可比性与扩展效率。',
+      contribution: '参与链路改造和能力边界拆分，使平台原子能力能够被不同 Agent 组合复用。',
+      evidence: '后续重点补充 Agent 接入周期、定制适配量、运行成功率和任务覆盖范围。',
     },
     {
-      index: '03',
-      title: 'On-call、Bug 与安全治理',
-      englishTitle: 'Reliability & Security',
-      status: '持续响应',
-      tone: 'red',
+      title: '平台质量与问题治理',
       description:
-        '承担平台问题响应和缺陷修复，已定位并推进修复部分水平越权问题，补齐资源级权限校验与回归验证。',
-      valuePath:
-        '快速定位与权限边界修复 → 降低越权、误操作和故障风险 → 保护评测资产与结果可信度',
-      metrics: ['问题定位与恢复时间', '缺陷复发率', '权限校验覆盖', '回归验证通过率'],
+        '参与平台 On-call 与缺陷治理，完善资源访问校验、异常处理和回归验证。',
+      value: '降低稳定性和权限边界风险，保护评测资产与结论可信度。',
+      contribution: '参与问题定位、修复方案落地和回归验证，将单点问题转化为更完整的质量防线。',
+      evidence: '公开页面仅保留问题治理方法；具体安全发现、内部链路和业务数据不对外披露。',
     },
     {
-      index: '04',
       title: '工程支持与自驱探索',
-      englishTitle: 'Exploration & Leverage',
-      status: '持续沉淀',
-      tone: 'green',
       description:
-        '承接跨模块工程支持，并围绕 Agent、Agentic RL、后训练与模型评测主动学习，尝试把零散问题沉淀为可复用的认知、文档和工具。',
-      valuePath:
-        '解决即时问题并识别共性 → 形成可复用沉淀 → 降低团队后续重复成本并拓展技术判断深度',
-      metrics: ['文档与工具沉淀', '重复问题处理成本', '实验可复现性', '复用范围'],
+        '承接跨模块工程支持，并围绕 Agent、Agentic RL、后训练与模型评测持续学习和实践。',
+      value: '把即时问题沉淀为可复用的认知、文档和工具，降低后续重复成本。',
+      contribution: '在完成即时支持的同时识别共性问题，并通过文档、工具或实验记录形成可复用沉淀。',
+      evidence: '后续将把适合公开的探索整理为 Blog、项目复盘和面试表达材料。',
     },
   ],
-  causalIndex: [
-    { label: '团队目标', value: '让不同 Agent 能够稳定接入、统一评测并形成可信比较' },
-    { label: '关键瓶颈', value: '链路、协议和能力边界不统一，带来重复适配与结果不可比' },
-    { label: '关键行动', value: '改造 Runtime 链路，拆分和沉淀可复用的原子化平台能力' },
-    { label: '直接指标', value: '接入周期、运行成功率、任务覆盖率与定制适配量' },
-    { label: '团队结果', value: '提升横评效率与可扩展性，为模型和 Agent 迭代提供更可信依据' },
-    { label: '归因证据', value: '通过链路测试、运行记录、使用反馈与改造前后对比持续验证' },
-  ],
-  valueDimensions: [
+  valueFramework: [
     {
-      title: 'Agent 能力释放',
-      description: '关注 Harness 是否让模型能力能够在真实任务、工具和环境中稳定发挥。',
-      metrics: '任务成功率 · 工具成功率 · 复杂任务覆盖',
+      title: '问题价值',
+      description: '明确工作解决了谁的什么瓶颈，以及不处理会产生的成本或风险。',
     },
     {
-      title: '评测规模与可信度',
-      description: '关注不同 Agent 是否能在统一链路中被公平、可复现地横向比较。',
-      metrics: 'Runtime 成功率 · 结果一致性 · 可复现率',
+      title: '关键行动',
+      description: '说明我改变了哪一段链路、能力边界或协作方式，以及其中的个人贡献。',
     },
     {
-      title: '研发与组织提效',
-      description: '关注原子能力复用是否降低新 Agent、新任务和新实验的边际接入成本。',
-      metrics: '接入周期 · 人工步骤 · 定制代码与重复开发量',
+      title: '结果与指标',
+      description: '通过成功率、覆盖范围、接入周期、稳定性或风险变化判断工作是否落地。',
     },
     {
-      title: '可靠性与风险控制',
-      description: '关注 On-call、缺陷治理和权限边界是否保护平台资产与评测结论。',
-      metrics: 'MTTR · 缺陷复发率 · 权限校验覆盖 · 回归结果',
+      title: '因果证据',
+      description: '使用链路测试、运行记录、使用反馈和改造前后对比约束结果归因。',
     },
   ],
+} as const;
+
+export const gpdiInternshipDetails = {
+  positioning:
+    '通过智慧城市与沿江渡口视频监控项目，参与从政策研究、点位信息整理到方案与成本支持的业务前期工作。',
+  workstreams: [
+    {
+      title: '智慧城市建设推广',
+      description: '围绕长沙市开福区智慧城市建设，收集政策、行业案例和建设思路，支持汇报材料整理。',
+      contribution: '完成政策与案例研究，并将分散信息整理为便于沟通和决策的方案材料。',
+      value: '帮助团队更高效地理解区域需求、行业实践与方案表达重点。',
+    },
+    {
+      title: '沿江渡口视频监控布置',
+      description: '参与湖北省沿江渡口视频监控项目，整理点位信息、地图位置与建设条件。',
+      contribution: '完成基础数据收集、地图定位和成本评估支持。',
+      value: '为后续设备布置和方案成本判断提供更完整的前置信息。',
+    },
+  ],
+  reflection:
+    '这段经历让我第一次在真实组织中理解：技术方案不仅取决于功能本身，还取决于现场条件、政策背景、成本约束和跨角色沟通。',
 } as const;
 
 export const honors = [

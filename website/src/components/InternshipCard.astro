@@ -1,29 +1,61 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   company: string;
   role: string;
   period: string;
   location: string;
   summary: string;
-  bullets: readonly string[];
+  bullets?: readonly string[];
   accent: string;
   logoImage: string;
+  href: string;
   logoWide?: boolean;
   draft?: boolean;
+  current?: boolean;
 }
-const { company, role, period, location, summary, bullets, accent, logoImage, logoWide = false, draft = false } = Astro.props;
+const {
+  company,
+  role,
+  period,
+  location,
+  summary,
+  bullets = [],
+  accent,
+  logoImage,
+  href,
+  logoWide = false,
+  draft = false,
+  current = false,
+} = Astro.props;
 ---
-<article class="internship-card reveal" style={`--internship-accent:${accent}`}>
-  <header class="internship-card-header">
-    <span class:list={['internship-logo', 'has-logo-image', { 'is-wide': logoWide }]}>
-      <img src={logoImage} alt={`${company}标志`} />
-    </span>
-    <div class="internship-heading"><h2>{company}</h2><p>{role}</p></div>
-    <div class="internship-meta"><time>{period}</time><span>{location}</span></div>
-  </header>
-  <div class="internship-body">
-    <p>{summary}</p>
-    <ul>{bullets.map((bullet) => <li>{bullet}</li>)}</ul>
-    {draft && <span class="draft-badge">内容初稿 · 待后续更新</span>}
-  </div>
-</article>
+<a class="internship-card-link reveal" href={href} aria-label={`查看${company}实习详情`}>
+  <article class="internship-card" style={`--internship-accent:${accent}`}>
+    <header class="internship-card-header">
+      <span class:list={['internship-logo', 'has-logo-image', { 'is-wide': logoWide }]}>
+        <img src={logoImage} alt={`${company}标志`} />
+      </span>
+      <div class="internship-heading">
+        <div class="internship-heading-labels">
+          {current && <span class="internship-current-badge">当前实习</span>}
+          {draft && <span class="draft-badge">持续更新</span>}
+        </div>
+        <h2>{company}</h2>
+        <p>{role}</p>
+      </div>
+      <div class="internship-meta"><time>{period}</time><span>{location}</span></div>
+    </header>
+    <div class="internship-body">
+      <p>{summary}</p>
+      {bullets.length > 0 && <ul>{bullets.map((bullet) => <li>{bullet}</li>)}</ul>}
+      <div class="internship-card-action">
+        <div>
+          <span>进入完整实习详情</span>
+          <small>工作内容 · 个人贡献 · 团队价值 · 结果证据</small>
+        </div>
+        <i><Icon name="arrow" size={20} /></i>
+      </div>
+    </div>
+  </article>
+</a>

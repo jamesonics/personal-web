@@ -159,5 +159,8 @@ Stop and discuss before implementation if a proposal would:
 - Preserve unrelated worktree changes.
 - Do not rewrite history or use destructive Git commands.
 - Use the existing `codex/` branch workflow unless the user requests otherwise.
+- After completing and validating a user-requested code, content, or UI change, create a clear local commit by default unless the user explicitly asks to review the uncommitted diff first or says not to commit.
+- Commit messages should summarize the content/behavior change, the UI design decisions when applicable, and the validation performed.
 - Do not push until explicitly authorized.
+- Treat commit and push as separate approval boundaries: a successful local commit never implies permission to push or deploy. Wait for the owner to inspect and confirm before pushing.
 - Deployment builds from `main`, updates `gh-pages`, and is served from `gh-pages / (root)`. Recheck current workflow and branch state before deploying.

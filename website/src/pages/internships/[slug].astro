@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Icon from '../../components/Icon.astro';
+import InternshipImpactPreview from '../../components/InternshipImpactPreview.astro';
+import { experience, fornaxInternshipDetails, gpdiInternshipDetails } from '../../data/profile';
+import { site } from '../../data/site';
+
+type Internship = (typeof experience)[number];
+type FornaxWorkstream = (typeof fornaxInternshipDetails.workstreams)[number];
+type GpdiWorkstream = (typeof gpdiInternshipDetails.workstreams)[number];
+type Workstream = FornaxWorkstream | GpdiWorkstream;
+
+export function getStaticPaths() {
+  return experience.map((item: Internship) => ({ params: { slug: item.slug }, props: { internship: item } }));
+}
+
+const { internship } = Astro.props as { internship: Internship };
+const isFornax = internship.slug === 'fornax';
+const logoImage = internship.logo === 'bytedance'
+  ? `${site.base}/images/logos/bytedance.svg`
+  : `${site.base}/images/logos/gpdi.png`;
+const workstreams: readonly Workstream[] = isFornax ? fornaxInternshipDetails.workstreams : gpdiInternshipDetails.workstreams;
+const positioning = isFornax ? fornaxInternshipDetails.positioning : gpdiInternshipDetails.positioning;
+---
+<BaseLayout title={`${internship.organization}实习`} description={internship.summary}>
+  <article class="internship-detail main-column page-content-layer" data-pagefind-body>
+    <a class="back-link" href={`${site.base}/internships/`}>← 返回实习经历</a>
+
+    <header class="internship-detail-hero">
+      <div class="internship-detail-title">
+        <span class="internship-detail-logo"><img src={logoImage} alt={`${internship.organization}标志`} /></span>
+        <div>
+          <p>{isFornax ? '当前实习 · 阶段性总结' : '实习总结'}</p>
+          <h1>{internship.organization}</h1>
+          <span>{internship.role}</span>
+        </div>
+      </div>
+      <div class="internship-detail-meta">
+        {isFornax && <strong>实习进行中</strong>}
+        <time>{internship.period}</time>
+        <span>{internship.location}</span>
+      </div>
+    </header>
+
+    {isFornax && <InternshipImpactPreview />}
+
+    <section class="content-section internship-detail-intro">
+      <SectionHeading title="实习定位" />
+      <p>{positioning}</p>
+      <div class="internship-detail-summary">
+        <div><strong>我的角色</strong><span>{internship.role}</span></div>
+        <div><strong>核心关注</strong><span>{isFornax ? 'Agent Harness、横向评测、平台质量与研发提效' : '业务研究、现场信息、方案支持与成本评估'}</span></div>
+        <div><strong>记录状态</strong><span>{isFornax ? `截至 ${fornaxInternshipDetails.updatedAt}，结果与指标持续补充` : '基于已完成项目进行回顾总结'}</span></div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <SectionHeading
+        title={isFornax ? '四条工作主线' : '主要工作与产出'}
+        description={isFornax ? '从工作内容、个人贡献、团队价值和证据状态四个层次展开。' : '结合具体业务场景说明承担的工作与形成的价值。'}
+      />
+      <div class="internship-detail-workstreams">
+        {workstreams.map((item: Workstream, index: number) => (
+          <article class="internship-detail-workstream reveal">
+            <span class="internship-detail-index">{String(index + 1).padStart(2, '0')}</span>
+            <h2>{item.title}</h2>
+            <div class="internship-detail-row"><strong>工作内容</strong><p>{item.description}</p></div>
+            <div class="internship-detail-row"><strong>个人贡献</strong><p>{item.contribution}</p></div>
+            <div class="internship-detail-row"><strong>团队价值</strong><p>{item.value}</p></div>
+            {'evidence' in item && <div class="internship-detail-row evidence"><strong>结果与证据</strong><p>{item.evidence}</p></div>}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {isFornax ? (
+      <section class="content-section">
+        <SectionHeading
+          title="价值与结果的记录方式"
+          description="不把功能完成直接等同于成果，而是持续补齐问题价值、关键行动、结果指标和因果证据。"
+        />
+        <div class="internship-value-story reveal">
+          <p>{fornaxInternshipDetails.positioning}</p>
+          <ol>
+            {fornaxInternshipDetails.valueFramework.map((item: (typeof fornaxInternshipDetails.valueFramework)[number]) => (
+              <li><strong>{item.title}</strong><span>{item.description}</span></li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    ) : (
+      <section class="content-section">
+        <SectionHeading title="经历复盘" />
+        <blockquote class="internship-detail-reflection">{gpdiInternshipDetails.reflection}</blockquote>
+      </section>
+    )}
+
+    <section class="internship-detail-footer">
+      <div>
+        <h2>{isFornax ? '这份总结会随着实习持续更新' : '从业务现场理解工程价值'}</h2>
+        <p>{isFornax ? '后续会继续补充可公开的代表项目、指标变化、因果证据和方法论 Blog。' : '这段经历帮助我建立了对真实需求、约束条件和项目交付的初步认识。'}</p>
+      </div>
+      <a class="button primary" href={`mailto:${site.email}?subject=${encodeURIComponent(`聊聊实习：${internship.organization}`)}`}>
+        联系我交流 <Icon name="mail" />
+      </a>
+    </section>
+  </article>
+</BaseLayout>
