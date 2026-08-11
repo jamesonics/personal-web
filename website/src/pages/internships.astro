@@ -1,28 +1,154 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InternshipCard from '../components/InternshipCard.astro';
-import { experience } from '../data/profile';
+import { experience, fornaxInternshipDetails } from '../data/profile';
 import { site } from '../data/site';
+
+const [fornaxExperience, ...pastExperiences] = experience;
 ---
-<BaseLayout title="实习" description="刘子涵在 Agent Infra、Agent 评测与智慧城市方向的实习经历。">
-  <div class="main-column page-content-layer">
-    <section class="page-header"><h1>实习经历</h1><p>从智慧城市方案研究到 Agent Infra 与评测平台建设，我希望理解技术如何在真实组织和业务流程中稳定运行。</p></section>
-    <section class="internship-list content-section">
-      {experience.map((item) => (
-        <InternshipCard
-          company={item.organization}
-          role={item.role}
-          period={item.period}
-          location={item.location}
-          accent={item.accent}
-          summary={item.summary}
-          bullets={item.bullets}
-          logoImage={item.logo === 'bytedance' ? `${site.base}/images/logos/bytedance.svg` : `${site.base}/images/logos/gpdi.png`}
-          logoWide={true}
-          draft={item.draft}
-        />
-      ))}
+<BaseLayout
+  title="实习"
+  description="刘子涵在字节跳动 Fornax 参与 Agent Harness、评测 Runtime、平台可靠性与 Agent 评测基础设施建设的阶段性记录。"
+>
+  <div class="internship-page page-content-layer">
+    <section class="internship-hero">
+      <div class="internship-hero-copy reveal">
+        <p class="internship-eyebrow">2026 上海实习记录</p>
+        <h1>围绕 Agent Harness 与评测基础设施，解决能力接入、横向比较与平台可靠性问题</h1>
+        <p class="internship-hero-lead">{fornaxInternshipDetails.positioning}</p>
+        <div class="internship-hero-meta" aria-label="实习信息">
+          <span>{fornaxExperience.organization}</span>
+          <span>{fornaxExperience.role}</span>
+          <span>{fornaxExperience.period}</span>
+          <span>{fornaxExperience.location}</span>
+        </div>
+      </div>
+      <aside class="internship-hero-status reveal" aria-label="实习进度">
+        <img src={`${site.base}/images/logos/bytedance.svg`} alt="字节跳动标志" />
+        <div>
+          <span class="internship-live-dot"></span>
+          <strong>实习进行中</strong>
+        </div>
+        <p>截至 {fornaxInternshipDetails.updatedAt}</p>
+        <p>{fornaxInternshipDetails.expectedEnd}</p>
+        <small>当前先展示公开边界内的工作框架。量化结果仅在取得可验证证据后补充。</small>
+      </aside>
     </section>
-    <section class="internship-note"><h2>关于字节跳动实习内容</h2><p>目前展示的是基于岗位方向的初版描述。后续在项目边界允许公开后，可以继续补充具体工作、技术栈、量化成果和代表案例。</p><a href={`mailto:${site.email}`}>联系我交流实习与 Agent 评测</a></section>
+
+    <section class="internship-section" id="methodology">
+      <div class="internship-section-heading reveal">
+        <div><span>00</span><p>工作方法</p></div>
+        <h2>从“完成了什么”转向“为什么值得做、改变了什么”</h2>
+        <p>每项工作按价值、结果、指标和因果证据四层记录，避免把需求交付直接等同于团队成果。</p>
+      </div>
+      <div class="internship-method-grid">
+        {fornaxInternshipDetails.methodology.map((item) => (
+          <article class="reveal">
+            <span>{item.index}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="internship-section internship-workstream-section" id="workstreams">
+      <div class="internship-section-heading reveal">
+        <div><span>01</span><p>工作主线</p></div>
+        <h2>当前参与的四条工作线</h2>
+        <p>以下内容是阶段性框架。后续会把每条工作线继续拆成项目、关键决策、指标变化和可公开的代表案例。</p>
+      </div>
+      <div class="internship-workstream-grid">
+        {fornaxInternshipDetails.workstreams.map((item) => (
+          <article class:list={['internship-workstream-card', `tone-${item.tone}`, 'reveal']}>
+            <header>
+              <span class="workstream-index">{item.index}</span>
+              <span class="workstream-status">{item.status}</span>
+            </header>
+            <p class="workstream-english">{item.englishTitle}</p>
+            <h3>{item.title}</h3>
+            <p class="workstream-description">{item.description}</p>
+            <div class="workstream-value">
+              <span>价值路径</span>
+              <p>{item.valuePath}</p>
+            </div>
+            <div class="workstream-metrics">
+              <span>关注指标</span>
+              <div>{item.metrics.map((metric) => <em>{metric}</em>)}</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="internship-section internship-causal-section" id="causal-index">
+      <div class="internship-section-heading reveal">
+        <div><span>02</span><p>因果链路</p></div>
+        <h2>用因果链说明 Runtime 改造为什么对团队有价值</h2>
+        <p>这是一条待数据持续补全的价值索引：明确目标与基线，解释方案的作用机制，再用指标和证据约束归因。</p>
+      </div>
+      <ol class="internship-causal-flow">
+        {fornaxInternshipDetails.causalIndex.map((item, index) => (
+          <li class="reveal">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div><strong>{item.label}</strong><p>{item.value}</p></div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="internship-section" id="value-ledger">
+      <div class="internship-section-heading reveal">
+        <div><span>03</span><p>价值指标</p></div>
+        <h2>用四类指标追踪产出是否真正转化为团队能力</h2>
+        <p>当前列出的是目标指标，不代表已经取得对应提升；后续将以日志、实验、使用数据和前后对比填入真实结果。</p>
+      </div>
+      <div class="internship-value-grid">
+        {fornaxInternshipDetails.valueDimensions.map((item, index) => (
+          <article class="reveal">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <strong>{item.metrics}</strong>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="internship-evidence-note reveal">
+      <p>记录原则</p>
+      <h2>只把经过验证的变化写成结果</h2>
+      <p>进行中的能力建设会明确标记为目标或阶段性产出；已经完成的工作，则继续补齐基线、影响范围、采用情况、指标变化和归因证据。</p>
+    </section>
+
+    <section class="internship-section internship-past-section" id="past-experience">
+      <div class="internship-section-heading reveal">
+        <div><span>04</span><p>过往经历</p></div>
+        <h2>其他实习经历</h2>
+        <p>早期的业务研究与方案支持经历，构成了我理解真实组织、客户需求和项目交付的起点。</p>
+      </div>
+      <div class="internship-list">
+        {pastExperiences.map((item) => (
+          <InternshipCard
+            company={item.organization}
+            role={item.role}
+            period={item.period}
+            location={item.location}
+            accent={item.accent}
+            summary={item.summary}
+            bullets={item.bullets}
+            logoImage={`${site.base}/images/logos/gpdi.png`}
+            logoWide={true}
+            draft={item.draft}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="internship-note">
+      <h2>关于公开边界</h2>
+      <p>页面仅呈现可以公开的方向、方法和价值框架，不披露内部数据、系统细节或敏感业务信息。后续会将可公开的方法论整理为 Agent、评测与工程实践 Blog。</p>
+      <a href={`mailto:${site.email}`}>联系我交流 Agent Harness 与评测基础设施</a>
+    </section>
   </div>
 </BaseLayout>
