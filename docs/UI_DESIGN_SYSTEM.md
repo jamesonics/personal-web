@@ -16,6 +16,8 @@ The reference spirit is Starfolio: constrained reading width, strong but not ove
 
 Do not copy a template literally. Preserve the owner's Chinese-first research and engineering identity.
 
+This is a personal website, not a company strategy deck. A reader should understand identity, contribution, evidence, and personality without decoding a sequence of methodology frameworks, KPI panels, numbered chapters, or presentation-style slogans.
+
 ## 2. Existing visual language
 
 ### Base palette
@@ -54,20 +56,29 @@ Use small amounts of:
 
 Accent color should not become a second page theme.
 
+Page-level accent budget:
+
+- one principal accent color;
+- one related low-contrast tint for section backgrounds;
+- semantic red/green only when a real warning or validated status requires it.
+
+Do not define a separate blue/orange/green/red palette for one route. If several semantic colors are truly necessary, they should come from a shared site-wide token system rather than page-local variables.
+
 ## 3. Typography
 
 Primary font stack:
 
 ```css
-'Outfit', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif
+'Nunito Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif
 ```
 
 Guidelines:
 
 | Role | Desktop target | Mobile target |
 |---|---:|---:|
-| Home/page H1 | 48-72px | 38-48px |
-| Section H2 | 27-42px | 25-35px |
+| Home/page H1 | 48-64px | 38-48px |
+| Ordinary section H2 | 27-34px | 25-30px |
+| Feature/case-study H2 | 32-42px | 28-35px |
 | Card H3 | 18-25px | 18-23px |
 | Lead/body | 17-22px | 16-18px |
 | Secondary text | 13-16px | 13-15px |
@@ -76,6 +87,7 @@ Rules:
 
 - Do not scatter many unrelated font sizes.
 - Avoid visible text below 13px except compact metadata.
+- Section meaning, card meaning, status, or information required for scanning is not compact metadata and must not be 11-12px.
 - Avoid long uppercase English labels. If used, keep them short and supporting.
 - Chinese section titles carry the hierarchy; English is secondary.
 - Important claims may use `font-weight: 700` plus underline with a comfortable underline offset.
@@ -95,6 +107,8 @@ Spacing principles:
 - larger case-study sections may use 90-110px, but should not create empty screens;
 - use 12-20px card gaps;
 - keep consistent left edges between headings, text, cards, and figures.
+- do not introduce a new 1180px page grid for one route when the established 960/1120px grid is sufficient;
+- ordinary pages should use one main reading column or a restrained two-column layout, not a chain of full-width dashboard grids.
 
 ## 5. Component rules
 
@@ -133,6 +147,8 @@ Default cards:
 - soft shadow only when elevation is useful;
 - no layout-changing 3D tilt;
 - predictable title, description, metadata, and action placement.
+
+A page-specific card may vary one or two properties, such as its accent border or illustration placement. It must not simultaneously redefine radius, shadow, minimum height, label system, internal callout, status badge, and color semantics.
 
 ### Full-width sections
 
@@ -189,9 +205,15 @@ Motion rules:
 
 ## 7. Known failures and lessons
 
-### Failure A: full-width dark causal section
+### Failure A: rejected full-width dark causal section
 
-Observed implementation:
+Historical context:
+
+- During development of the internship page, an uncommitted draft used the following rule.
+- The owner rejected it because the page abruptly changed from a light portfolio into a near-black presentation slide.
+- Commit `bc57ac5` corrected this specific selector to a light blue gradient. The dark code below is therefore a historical rejected example, not the current source.
+
+Rejected implementation:
 
 ```css
 .internship-causal-section {
@@ -218,25 +240,45 @@ Preferred correction:
 - use subtle borders and small colored labels;
 - preserve the same section heading scale as adjacent sections.
 
-### Failure B: connected project cards with 3D transforms
+### Failure B: partial correction still creates a page-local design system
+
+Commit `bc57ac5` removed the near-black causal section, but the resulting internship page still demonstrates a subtler consistency failure:
+
+| Evidence in the commit | Why it remains off-brand |
+|---|---|
+| `.route-internships` defines `--internship-ink`, orange, blue, green, red, and paper variables | One route receives its own multi-color product palette instead of using the shared neutral system plus a restrained accent. |
+| `.internship-section-heading h2` reaches 46px while ordinary shared section headings are about 29px | Repeated oversized statements make every section compete with the page hero and create a deck-like rhythm. |
+| `.internship-section-heading > div > p`, `.workstream-status`, `.workstream-english`, and `.workstream-value span` use 11px text | Important structure becomes hard to scan and repeats the owner's earlier complaint about too many tiny labels. |
+| `.internship-workstream-card` is at least 470px tall and contains status, English title, description, value path, and metric chips | The card behaves like a KPI/report panel rather than a concise personal-experience card. |
+| `.internship-evidence-note` introduces a separate saturated orange gradient and white typography | The page adds another one-off callout language instead of reusing a shared card or note pattern. |
+| The page appends roughly 100 lines of route-specific CSS to `global.css` | The amount is a warning sign that the page is reinventing the product rather than composing existing primitives. |
+
+Lesson:
+
+- Fixing the most obvious black background is necessary but not sufficient.
+- Do not treat a successful build, responsive layout, or a commit message claiming “preserve the site's light visual language” as proof of visual consistency.
+- Compare the rendered page with Home, Projects, Blog, and CV, then identify every new token, heading scale, card grammar, badge, and callout that has no shared equivalent.
+- Simplify first: reuse the shared page header, section heading, cards, buttons, spacing, and typography. Add only the smallest page-specific accent required by the content.
+
+### Failure C: connected project cards with 3D transforms
 
 Earlier project cards visually left their grid and overlapped content/footer.
 
 Rule: animations may elevate cards visually but must never change layout or cover adjacent content.
 
-### Failure C: too many tiny English labels
+### Failure D: too many tiny English labels
 
 The site previously used many 9-12px uppercase English eyebrows, making scanning difficult.
 
 Rule: Chinese-first headings, fewer labels, and consistent typography.
 
-### Failure D: abrupt visual reinvention per page
+### Failure E: abrupt visual reinvention per page
 
 A single page must not define a new color palette, new heading system, new button system, and new card system together.
 
 Rule: page-specific identity comes from content, illustrations, a small accent, and layout variation—not an entirely new design system.
 
-### Failure E: source screenshots with embedded paper captions
+### Failure F: source screenshots with embedded paper captions
 
 Project images previously retained Figure labels, page numbers, and surrounding text.
 
@@ -245,9 +287,11 @@ Rule: crop source assets carefully, keep only the useful visual, and provide pag
 ## 8. Content presentation rules
 
 - Lead with the user's role, contribution, and evidence.
+- Use progressive disclosure: the page summary should remain concise, while deep methodology or technical detail can link to a Project or Blog article.
 - Quantified claims require an explainable baseline or source.
 - Separate actual implementation from reference architecture or future direction.
 - Do not expose internal ByteDance details or private data.
+- Company platform names, vulnerability classes, permission defects, On-call incidents, operational mechanisms, and internal metrics need explicit owner approval for the exact public wording; being technically true does not automatically make them appropriate for a public portfolio.
 - Keep internship claims inside the publicly approved boundary.
 - Project pages should read as credible case studies, not academic papers or pitch decks.
 
@@ -275,7 +319,8 @@ Before editing:
 1. Read root `AGENTS.md` and this document.
 2. Inspect the target page and at least two adjacent pages.
 3. Identify existing reusable components and tokens.
-4. State whether the change preserves or alters the design system.
+4. Inventory proposed page-specific additions: colors, font sizes, widths, cards, badges, buttons, navigation, and motion.
+5. State whether the change preserves or alters the design system. If it adds a parallel system, stop and simplify or ask for approval.
 
 During editing:
 
@@ -283,6 +328,7 @@ During editing:
 2. Keep CSS local to a component/page only when necessary.
 3. Avoid appending a large new design system to `global.css` without reviewing existing selectors.
 4. Do not override the same selector repeatedly at the bottom of the CSS file unless consolidating afterward.
+5. Treat a large block of route-specific global CSS as a review trigger. Either reuse shared primitives, extract a reusable component, or explain why the exception is necessary.
 
 After editing:
 
@@ -292,20 +338,25 @@ After editing:
 4. Check console errors and broken images.
 5. Test interactions.
 6. Compare against Home, Projects, and Blog.
-7. Ask: “Does this still look like the same website?”
+7. List intentional deviations from shared tokens/components and verify each one is necessary.
+8. Ask: “Does this still look like the same website, or like a separate template/deck inserted into it?”
 
 ## 11. UI acceptance checklist
 
 A page is acceptable only if all are true:
 
 - [ ] It uses the established typography and color tokens.
+- [ ] It introduces at most one principal page accent and one related soft tint unless a wider palette was explicitly approved.
 - [ ] It has no unapproved full-width dark section.
 - [ ] Buttons and cards match shared component language.
 - [ ] Chinese is primary; English labels are limited.
 - [ ] No text is unnecessarily tiny.
+- [ ] It does not depend on repeated numbered chapter labels, KPI panels, or oversized slogans to create hierarchy.
+- [ ] It reads as a personal portfolio page rather than a company report, pitch deck, or dashboard.
 - [ ] No overlapping or horizontal overflow occurs.
 - [ ] Mobile layout is intentionally designed, not merely compressed.
 - [ ] Images and logos are verified and properly cropped.
 - [ ] Animation is subtle and respects reduced motion.
 - [ ] Claims and sources are honest.
+- [ ] Public wording has been checked for internal, security, privacy, and confidentiality risk.
 - [ ] Build and browser validation passed.
