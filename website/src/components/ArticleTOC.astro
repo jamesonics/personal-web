@@ -40,6 +40,18 @@ const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.d
 
 <script>
   const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.toc-link'));
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const scrollBehavior = () => reducedMotion.matches ? 'instant' : 'smooth';
+  document.querySelectorAll<HTMLElement>('.article-toc-mobile > summary').forEach((summary) => {
+    summary.addEventListener('click', (event) => {
+      if (event.detail !== 0) return;
+      const mobileToc = summary.closest<HTMLDetailsElement>('.article-toc-mobile');
+      mobileToc?.classList.add('is-instant');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => mobileToc?.classList.remove('is-instant'));
+      });
+    });
+  });
   const headingIds = [...new Set(tocLinks.map((link) => link.dataset.headingId).filter(Boolean))] as string[];
   const articleHeadings = headingIds
     .map((id) => document.getElementById(id))
@@ -86,18 +98,19 @@ const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.d
       const target = id ? document.getElementById(id) : null;
       const mobileToc = link.closest<HTMLDetailsElement>('.article-toc-mobile');
       if (target && id) {
+        const behavior = event.detail === 0 ? 'instant' : scrollBehavior();
         event.preventDefault();
         history.pushState(null, '', `#${encodeURIComponent(id)}`);
         if (mobileToc) {
           mobileToc.open = false;
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              target.scrollIntoView({ behavior, block: 'start' });
               setActiveHeading(id);
             });
           });
         } else {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.scrollIntoView({ behavior, block: 'start' });
           setActiveHeading(id);
         }
       } else if (mobileToc) {

@@ -11,7 +11,8 @@ const { theme = 'default' } = Astro.props;
   const canvas = document.querySelector<HTMLCanvasElement>('[data-page-ambient]');
   if (canvas) {
     const context = canvas.getContext('2d');
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+    let reduced = motionPreference.matches;
     let width = 0;
     let height = 0;
     let frame = 0;
@@ -38,11 +39,31 @@ const { theme = 'default' } = Astro.props;
           context.fill();
         }
       }
-      if (!reduced) frame = requestAnimationFrame(draw);
+      frame = !reduced && !document.hidden ? requestAnimationFrame(draw) : 0;
+    };
+    const stop = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+    };
+    const restart = () => {
+      stop();
+      draw(performance.now());
+    };
+    const handleResize = () => {
+      resize();
+      restart();
+    };
+    const handleVisibility = () => document.hidden ? stop() : restart();
+    const handleMotionPreference = (event: MediaQueryListEvent) => {
+      reduced = event.matches;
+      restart();
     };
     resize();
-    draw();
-    addEventListener('resize', resize);
-    addEventListener('pagehide', () => cancelAnimationFrame(frame), { once: true });
+    restart();
+    addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibility);
+    motionPreference.addEventListener('change', handleMotionPreference);
+    addEventListener('pagehide', stop);
+    addEventListener('pageshow', restart);
   }
 </script>

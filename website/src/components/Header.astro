@@ -15,10 +15,17 @@ const active = (href: string) => href === '/' ? path === '/' || path === '' : pa
     </nav>
     <div class="header-actions">
       <a class="icon-button desktop-action" href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" /></a>
-      <button class="icon-button mobile-menu-button" type="button" data-menu-toggle aria-label="打开菜单"><Icon name="menu" /></button>
+      <button
+        class="icon-button mobile-menu-button"
+        type="button"
+        data-menu-toggle
+        aria-label="打开菜单"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      ><Icon name="menu" /></button>
     </div>
   </div>
-  <div class="mobile-menu" data-mobile-menu>
+  <div id="mobile-menu" class="mobile-menu" data-mobile-menu aria-hidden="true" inert>
     <div class="mobile-menu-top"><strong>导航</strong><button class="icon-button" type="button" data-menu-close aria-label="关闭菜单"><Icon name="close" /></button></div>
     <nav aria-label="移动端导航">{navigation.map((item) => <a href={link(item.href)} aria-current={active(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav>
     <div class="mobile-menu-contact"><a href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a><a href={site.github} target="_blank" rel="noreferrer"><Icon name="github" />GitHub</a></div>
