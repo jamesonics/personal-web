@@ -37,15 +37,15 @@ img { display: block; max-width: 100%; }
 
 .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, .9); border-bottom: 1px solid transparent; backdrop-filter: blur(14px); }
 .site-header.scrolled { border-bottom-color: var(--border); }
-.header-inner { width: min(1000px, calc(100% - 40px)); height: 70px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.header-inner { width: min(1000px, calc(100% - 40px)); height: 72px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
 .brand-avatar { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--black); color: var(--white); font-size: 15px; }
 .brand-name { font-size: 15px; }
-.desktop-nav { display: flex; align-items: center; gap: 8px; }
-.desktop-nav a { padding: 8px 11px; border-radius: 8px; color: var(--muted); font-size: 14px; font-weight: 500; transition: color var(--motion-ui) ease, background var(--motion-ui) ease; }
+.desktop-nav { display: flex; align-items: center; gap: 10px; }
+.desktop-nav a { padding: 9px 13px; border-radius: 9px; color: var(--muted); font-size: 15px; font-weight: 600; transition: color var(--motion-ui) ease, background var(--motion-ui) ease; }
 .desktop-nav a[aria-current='page'] { color: var(--text); background: var(--surface); font-weight: 600; }
 .header-actions { display: flex; gap: 8px; }
-.icon-button { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 9px; background: var(--white); color: var(--text); cursor: pointer; transition: transform var(--motion-fast) var(--ease-out), background var(--motion-ui) ease; }
+.icon-button { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 10px; background: var(--white); color: var(--text); cursor: pointer; transition: transform var(--motion-fast) var(--ease-out), background var(--motion-ui) ease; }
 .mobile-menu-button, .mobile-menu { display: none; }
 
 .hero { min-height: 460px; padding: 90px 0 74px; display: grid; grid-template-columns: minmax(0, 1fr) 150px; align-items: center; gap: 70px; }
@@ -206,6 +206,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 760px) {
   .container, .main-column { width: min(100% - 30px, 900px); }
   .header-inner { width: calc(100% - 30px); height: 64px; }
+  .icon-button { width: 40px; height: 40px; border-radius: 9px; }
   .brand-name, .desktop-nav, .desktop-action { display: none; }
   .mobile-menu-button { display: grid; }
   .mobile-menu { position: fixed; inset: 0; z-index: 110; width: 100vw; height: 100dvh; padding: 20px; display: flex; flex-direction: column; background: var(--white); transform: translateX(100%); visibility: hidden; pointer-events: none; transition: transform var(--motion-panel) var(--ease-drawer), visibility 0s linear var(--motion-panel); }
