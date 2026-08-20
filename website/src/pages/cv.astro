@@ -12,7 +12,7 @@ import { site } from '../data/site';
       <div><h1>个人简历</h1><p>{site.name} · {site.title}<br/>{site.affiliation}</p></div>
       <div class="cv-actions"><a class="button primary" href={`${site.base}/docs/CV_Chinese.pdf`} target="_blank">中文简历 <Icon name="download" /></a><a class="button secondary" href={`${site.base}/docs/CV_English.pdf`} target="_blank">英文简历 <Icon name="download" /></a></div>
     </section>
-    <section class="cv-contact-card"><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.github} target="_blank">github.com/topjames666</a></section>
+    <section class="cv-contact-card"><a href={`mailto:${site.email}`}>{site.email}</a><a href={site.github} target="_blank">github.com/jamesonics</a></section>
     <section class="content-section"><SectionHeading title="教育经历" /><div class="simple-timeline">{education.map((item) => <article><div><h3>{item.school}</h3><p>{item.degree}</p><span>{item.meta} · {item.details}</span></div><time>{item.period}</time></article>)}</div></section>
     <section class="content-section"><SectionHeading title="研究与技能" /><div class="skill-groups">{skillGroups.map((group) => <article><h3>{group.title}</h3><div>{group.skills.map((skill) => <span>{skill}</span>)}</div></article>)}</div></section>
     <section class="content-section"><SectionHeading title="代表项目" /><div class="cv-list">{projects.slice(0, 6).map((project) => <article><div><h3>{project.title}</h3><p>{project.role} · {project.summary}</p></div><time>{project.year}</time></article>)}</div></section>

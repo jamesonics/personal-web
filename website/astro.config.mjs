@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://topjames666.github.io',
+  site: 'https://jamesonics.github.io',
   base: '/personal-web',
   output: 'static',
   trailingSlash: 'always',

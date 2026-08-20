@@ -4,7 +4,7 @@ export const site = {
   title: 'AI Agent 研究与开发',
   affiliation: '西安交通大学 · 能源与动力工程学院',
   email: 'JamesL@stu.xjtu.edu.cn',
-  github: 'https://github.com/topjames666',
+  github: 'https://github.com/jamesonics',
   description:
     '面向真实工程问题，研究并构建垂类智能体、RAG 系统与多智能体协作工作流。',
   base: '/personal-web',
